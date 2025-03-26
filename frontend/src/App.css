@@ -36,3 +36,85 @@
     transform: rotate(360deg);
   }
 }
+
+.banner {
+  background-color: #b22222;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.banner span {
+  display: inline-block;
+  position: absolute;
+  animation: banner-move 10s linear infinite;
+}
+
+@keyframes banner-move {
+  from {
+    transform: translateX(325%);
+  }
+  to {
+    transform: translateX(-325%);
+  }
+}
+
+nav {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  background-color: #b22222;
+  padding: 15px 25px;
+  border: 3px solid black;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+nav a:hover {
+  background-color: black;
+  color: #b22222;
+  transform: scale(1.05);
+}
+
+.page {
+  padding: 20px;
+  font-size: 1.2em;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+.page h1 {
+  color: #b22222;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.leader-glow {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px gold;
+  }
+  to {
+    box-shadow: 0 0 30px gold;
+  }
+}
+
+/* Suppression de la classe audio-player */
