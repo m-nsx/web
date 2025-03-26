@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Vote() {
   const [username, setUsername] = useState('');
-  const [candidate, setCandidate] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+  const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    // Fetch categories from the backend
+    fetch('http://localhost:5000/categories')
+      .then((res) => res.json())
+      .then((data) => setCategories(data.categories || []))
+      .catch(() => setCategories([]));
+  }, []);
 
   const handleVote = async (e) => {
     e.preventDefault();
+    if (!username || !selectedCategory || !selectedOption) {
+      setMessage('Veuillez remplir tous les champs pour voter.');
+      return;
+    }
     try {
       const response = await fetch('http://localhost:5000/vote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, candidate, title, description }),
+        body: JSON.stringify({ username, category: selectedCategory, option: selectedOption }),
       });
       const data = await response.json();
       setMessage(data.message || data.error || 'Vote failed.');
@@ -36,29 +48,38 @@ function Vote() {
         </label>
         <br />
         <label>
-          Candidat:
-          <input
-            type="text"
-            value={candidate}
-            onChange={(e) => setCandidate(e.target.value)}
-          />
+          Catégorie:
+          <select
+            value={selectedCategory}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setSelectedOption(''); // Reset selected option when category changes
+            }}
+          >
+            <option value="">Sélectionnez une catégorie</option>
+            {categories.map((category) => (
+              <option key={category.name} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </label>
         <br />
         <label>
-          Titre:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Description:
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          Option:
+          <select
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+            disabled={!selectedCategory} // Disable if no category is selected
+          >
+            <option value="">Sélectionnez une option</option>
+            {categories
+              .find((cat) => cat.name === selectedCategory)?.options.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+          </select>
         </label>
         <br />
         <button type="submit">Voter</button>
