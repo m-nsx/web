@@ -117,4 +117,33 @@ nav a:hover {
   }
 }
 
+form {
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #b22222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+form button:hover {
+  background-color: black;
+}
+
 /* Suppression de la classe audio-player */
