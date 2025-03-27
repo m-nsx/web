@@ -155,41 +155,45 @@ function VotesManagement() {
       </ul>
 
       <h2>Résultats des Votes</h2>
-      {Object.keys(groupedVotes).map((category) => {
-        const chartData = groupedVotes[category].reduce((acc, vote) => {
-          const existing = acc.find((item) => item.name === vote.candidate);
-          if (existing) {
-            existing.value += 1;
-          } else {
-            acc.push({ name: vote.candidate, value: 1 });
-          }
-          return acc;
-        }, []);
+      {Object.keys(groupedVotes).length > 0 ? (
+        Object.keys(groupedVotes).map((category) => {
+          const chartData = groupedVotes[category].reduce((acc, vote) => {
+            const existing = acc.find((item) => item.name === vote.candidate);
+            if (existing) {
+              existing.value += vote.score; // Utilisez le score pour le graphique
+            } else {
+              acc.push({ name: vote.candidate, value: vote.score });
+            }
+            return acc;
+          }, []);
 
-        return (
-          <div key={category} style={{ marginBottom: '50px' }}>
-            <h3>{category}</h3>
-            <PieChart width={400} height={400} style={{ margin: '0 auto' }}>
-              <Pie
-                data={chartData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={150}
-                fill="#8884d8"
-                label
-              >
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </div>
-        );
-      })}
+          return (
+            <div key={category} style={{ marginBottom: '50px' }}>
+              <h3>{category}</h3>
+              <PieChart width={400} height={400} style={{ margin: '0 auto' }}>
+                <Pie
+                  data={chartData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={150}
+                  fill="#8884d8"
+                  label
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </div>
+          );
+        })
+      ) : (
+        <p>Aucun vote disponible pour afficher les graphiques.</p>
+      )}
 
       <h2>Tous les Votes</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
@@ -207,6 +211,7 @@ function VotesManagement() {
             <p><strong>Utilisateur:</strong> {vote.username}</p>
             <p><strong>Catégorie:</strong> {vote.title}</p>
             <p><strong>Option:</strong> {vote.candidate}</p>
+            <p><strong>Score:</strong> {vote.score}</p> {/* Affiche le score */}
             <button onClick={() => handleEditVote(vote)}>Modifier</button>
             <button onClick={() => handleDeleteVote(vote.username)}>Supprimer</button>
           </div>

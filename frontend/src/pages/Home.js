@@ -1,20 +1,24 @@
 function Home() {
   return (
     <div className="page">
-      <h1>Accueil</h1>
-      <p>Bienvenue dans la République Imaginaire, où tout est parfait sous notre grand dirigeant.</p>
-      <article>
-        <img 
-          src="https://i.ibb.co/NnGb8jW2/Capture-d-cran-2025-03-26-141202.png" 
-          alt="Propaganda" 
-          style={{ width: '100%', maxWidth: '600px', margin: '20px 0', border: '3px solid black' }} 
-        />
-        <p>
-          Sous la direction éclairée de notre grand leader, la République Imaginaire prospère comme jamais auparavant. 
-          Chaque citoyen joue un rôle crucial dans la construction d'une société parfaite, unie et forte. 
-          Rejoignez-nous pour célébrer les valeurs de discipline, d'ordre et de progrès.
-        </p>
-      </article>
+      <h1>Bienvenue</h1>
+      <p>
+        Découvrez la République Imaginaire, un lieu de prospérité et d'unité sous la direction de notre grand leader.
+      </p>
+      <div className="container">
+        <div className="card">
+          <h2>Notre Vision</h2>
+          <p>
+            Construire une société parfaite où chaque citoyen joue un rôle crucial dans le progrès et l'unité.
+          </p>
+        </div>
+        <div className="card">
+          <h2>Nos Valeurs</h2>
+          <p>
+            Discipline, ordre, et progrès sont les piliers de notre République Imaginaire.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
