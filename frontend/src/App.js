@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Auth from './pages/Auth';
-import Leader from './pages/Leader';
 import Vote from './pages/Vote';
 import VotesManagement from './pages/VotesManagement';
 import Account from './pages/Account';
@@ -28,7 +27,7 @@ function App() {
           <span>Bienvenue dans la République Imaginaire</span>
         </div>
         <nav>
-          <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> | <Link to="/leader">Notre Leader</Link> |{' '}
+          <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> |{' '}
           {!token ? (
             <Link to="/auth">Authentification</Link>
           ) : (
@@ -44,7 +43,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/leader" element={<Leader />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
           {token && <Route path="/vote" element={<Vote />} />}
           {token && <Route path="/votes-management" element={<VotesManagement />} />}

@@ -97,10 +97,6 @@ nav a:hover {
   color: #555;
 }
 
-.leader-glow {
-  animation: glow 2s infinite alternate;
-}
-
 @keyframes glow {
   from {
     box-shadow: 0 0 10px gold;
