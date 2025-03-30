@@ -7,13 +7,13 @@ const Login = () => {
             //Identifiant
             <div className="group">
                 <label htmlFor="login">Identifiant</label>
-                <input type="text" placeholder="login"></input>
+                <input type="text" name="login"></input>
             </div>
 
             //Mot de passe
             <div className="group">
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" placeholder="Mot de passe"></input>
+            <input type="password" name="password"></input>
             </div>
 
             //Bouton
