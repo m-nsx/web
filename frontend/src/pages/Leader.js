@@ -302,11 +302,20 @@ function Leader() {
           
           .footer-banner {
             background-color: #b22222;
-            color: white;
+            color: #ffffff; // Explicitly set to pure white
             padding: 10px;
             border-radius: 5px;
             font-weight: bold;
             margin-top: 40px;
+          }
+          
+          .footer-banner p {
+            font-size: 1em; /* Ensure it doesn't inherit the larger font size */
+            color: #ffffff !important; /* Override var(--text-light) */
+            border-radius: 0; /* Remove unnecessary border-radius */
+            padding: 0; /* Remove extra padding */
+            text-align: center; /* Keep centered alignment */
+            font-family: inherit; /* Use the inherited font-family */
           }
         `}
       </style>

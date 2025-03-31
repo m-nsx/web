@@ -55,42 +55,43 @@ function Account() {
 
   return (
     <div className="page">
-      <h1>Mon Compte</h1>
-      <form onSubmit={handlePasswordChange}>
-        <label>
-          Ancien mot de passe:
-          <input
-            type="password"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Nouveau mot de passe:
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Modifier le mot de passe</button>
-      </form>
-      <button
-        onClick={handleAccountDeletion}
-        style={{
-          marginTop: '20px',
-          backgroundColor: 'red',
-          color: 'white',
-          border: 'none',
-          padding: '10px 20px',
-          cursor: 'pointer',
-        }}
-      >
-        Supprimer mon compte
-      </button>
-      {message && <p>{message}</p>}
+      <div className="card" style={{ maxWidth: '400px', margin: '0 auto' }}>
+        <h1>Mon Compte</h1>
+        <form onSubmit={handlePasswordChange}>
+          <label>
+            Ancien mot de passe:
+            <input
+              type="password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+            />
+          </label>
+          <label>
+            Nouveau mot de passe:
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </label>
+          <button type="submit">Modifier le mot de passe</button>
+        </form>
+        <button
+          onClick={handleAccountDeletion}
+          style={{
+            marginTop: '20px',
+            backgroundColor: '#b22222',
+            color: 'white',
+            border: 'none',
+            padding: '10px 20px',
+            cursor: 'pointer',
+            borderRadius: '50px',
+          }}
+        >
+          Supprimer mon compte
+        </button>
+        {message && <p style={{ color: 'red' }}>{message}</p>}
+      </div>
     </div>
   );
 }
