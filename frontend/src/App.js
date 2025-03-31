@@ -6,6 +6,7 @@ import Auth from './pages/Auth';
 import Vote from './pages/Vote';
 import VotesManagement from './pages/VotesManagement';
 import Account from './pages/Account';
+import Leader from './pages/Leader';
 import { useState } from 'react';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
           <span>Bienvenue dans la République Imaginaire</span>
         </div>
         <nav>
-          <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> |{' '}
+          <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> | <Link to="/leader">Notre Leader</Link> |{' '}
           {!token ? (
             <Link to="/auth">Authentification</Link>
           ) : (
@@ -47,6 +48,7 @@ function App() {
           {token && <Route path="/vote" element={<Vote />} />}
           {token && <Route path="/votes-management" element={<VotesManagement />} />}
           {token && <Route path="/account" element={<Account />} />}
+          <Route path="/leader" element={<Leader />} />
         </Routes>
       </div>
     </Router>
