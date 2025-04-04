@@ -125,11 +125,11 @@ function Vote() {
         <div
           style={{
             position: 'relative',
-            width: '50%',
-            height: '300px',
+            width: '400px',
+            height: '400px',
             border: '1px solid #ccc',
-            margin: '20px 0',
-            backgroundImage: 'url(https://www.shutterstock.com/image-vector/roundabout-road-markings-trees-buildings-260nw-1705627783.jpg)', // URL de l'image de fond
+            margin: '20px 30%',
+            backgroundImage: 'url(/images/rond-point.jpg)', // URL de l'image de fond
             backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
             backgroundSize: 'contain', // Ajuste l'image pour couvrir toute la zone
             backgroundPosition: 'center', // Centre l'image
@@ -145,7 +145,7 @@ function Vote() {
                 left: `${target.x}%`,
                 width: '30px',
                 height: '30px',
-                backgroundImage: 'url(https://www.securinorme.com/22038-thickbox_default/gilet-jaune-fluorescent-.jpg)', // Chemin vers l'image du gilet jaune
+                backgroundImage: 'url(/images/gilet-jaune.jpg)', // Chemin vers l'image du gilet jaune
                 backgroundSize: 'contain', // Ajuste l'image pour qu'elle soit entièrement visible
                 backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
                 backgroundPosition: 'center', // Centre l'image
