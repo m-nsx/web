@@ -1,4 +1,4 @@
-    import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
 function VotesManagement() {
@@ -21,7 +21,7 @@ function VotesManagement() {
 
     fetch('http://localhost:5000/votes')
       .then((res) => res.json())
-      .then((data) => setVotes(data.votes || []))
+      .then((data) => setVotes(data.votes || [])) // Vérifiez que `data.votes` contient bien le champ `score`
       .catch(() => setVotes([]));
   }, []);
 
