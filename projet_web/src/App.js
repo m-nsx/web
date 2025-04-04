@@ -4,11 +4,13 @@ import './App.css';
 
 function Questionnaire()  {
 
-    const [reponse, setReponse] = useState({"q1":0, "q2":0, "q3":0, "q4":0, "q5":0});
-    const [score, setScore] = useState(0);
+    // Variables
+    const [reponse, setReponse] = useState({"q1":null, "q2":null, "q3":null, "q4":null, "q5":null});
+    const [score, setScore] = useState(null);
     const [resultat, setResultat] = useState("");
+    const [erreur, setErreur] = useState("");
 
-
+    // Fonctions
     const ChangerValeur = (question, valeur) => {
         setReponse(prevReponse => {
             const newReponse = { ...prevReponse, [question]: valeur };
@@ -24,16 +26,33 @@ function Questionnaire()  {
 
 
     const AfficherResultat = () => {
+        const questionsRepondues = {q1: false, q2: false, q3: false, q4: false, q5: false};
+        
+        // Marquer chaque question comme répondue ou non
+        Object.keys(reponse).forEach(key => {
+            if (reponse[key] !== null) {
+                questionsRepondues[key] = true;
+            }
+        });
+        
+        // Vérifier si toutes les questions sont répondues
+        const toutesQuestionsRepondues = Object.values(questionsRepondues).every(val => val === true);
+    
+        if (!toutesQuestionsRepondues) {
+            setErreur("Veuillez répondre à toutes les questions !");
+            return;
+        }
+    
+        setErreur("");
         if (score >= 4) {
-            setResultat("Tu es un  Gilet Jaune ! Sors de ce pays !!!");
-        } 
-        else {
+            setResultat("Tu es un Gilet Jaune ! Sors de ce pays !!!");
+        } else {
             setResultat("Tout va bien, tu peux venir dans notre pays, tu es le bienvenue");
         }
-
     }
 
 
+    //Affichage
 
     return (
         <div className="questionnaire-container">
@@ -59,6 +78,11 @@ function Questionnaire()  {
                         <h1>Questionnaire</h1>
                         <p>Réponds à ces questions d'une importance capitale avant de rejoindre notre nation.</p>
                     </div>
+                    <img 
+                        src="../public/Logo-gilet-jaune.png" 
+                        alt="Gilet Jaune" 
+                        className="titre-image"
+                    />
                     <h1>{score}</h1>
 
                     {/* Question 1 */}
@@ -159,6 +183,7 @@ function Questionnaire()  {
 
                 </form>
 
+                {erreur && <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>{erreur}</p>}
                 <button onClick={AfficherResultat}>Voir mon résultat</button>   
 
             </div>
