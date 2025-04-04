@@ -79,7 +79,7 @@ function Questionnaire()  {
                         <p>Réponds à ces questions d'une importance capitale avant de rejoindre notre nation.</p>
                     </div>
                     <img 
-                        src="../public/Logo-gilet-jaune.png" 
+                        src="/Logo-gilet-jaune.png" 
                         alt="Gilet Jaune" 
                         className="titre-image"
                     />

@@ -21,6 +21,10 @@
   line-height: 1.5;
 }
 
+.titre-image {
+  width: 60px;
+  height: auto;
+}
 
 
 .questionnaire-container {
