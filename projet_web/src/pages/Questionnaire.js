@@ -9,7 +9,6 @@ function Questionnaire()  {
     const navigate = useNavigate();
     const [reponse, setReponse] = useState({"q1":null, "q2":null, "q3":null, "q4":null, "q5":null});
     const [score, setScore] = useState(null);
-    const [resultat, setResultat] = useState("");
     const [erreur, setErreur] = useState("");
 
     // Fonctions
