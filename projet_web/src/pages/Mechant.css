@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000f1;
+    color: white;
+}
+
+.Gilet_jeune_Verif {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+@keyframes blink {
+    0% { 
+      background-color: #ff0000;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+    50% { 
+      background-color: #ffffff;
+      box-shadow: 0 0 50px rgba(255, 0, 0, 1);
+    }
+    100% { 
+      background-color: #ff0000;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+  }
+  
+  .button-danger {
+    background-color: #ff0000;
+    color: white;
+    padding: 25px 50px;  
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    font-size: 28px;  
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 
+      -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+    animation: blink 0.6s infinite;  
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    letter-spacing: 2px; 
+  }
+  
+  .button-danger:hover {
+    background-color: #ff0000;
+    transform: scale(1.1);  
+    transition: transform 0.3s ease;
+  }
+
+
+  .girophare_rouge_1 {
+    position: absolute;
+    top: 29%; 
+    left: 32%; 
+    transform: translateY(-50%) rotate(-10deg); 
+    width: 150px; 
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(255, 168, 168, 0.904));
+    z-index: 100;
+}
+
+.girophare_rouge_2 {
+    position: absolute;
+    top: 29%; 
+    right: 32%; 
+    transform: translateY(-50%) rotate(10deg); 
+    width: 150px; 
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(255, 168, 168, 0.904));
+    z-index: 100;
+}
+
+.macron_demoniaque {
+  align-items: center;
+  width: 600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.titre_gilet_jaune {
+  align-items: center;
+  width: 900px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 5px rgba(204, 6, 6, 0.904));
+
+}
+
+.macron_dark_1 {
+  opacity: 0.5;
+  position: absolute;
+  top: 40%; 
+  left: 2%; 
+  width: 600px; 
+  height: auto;
+  z-index: 100;
+}
+
+.macron_dark_2 {
+  opacity: 0.5;
+  position: absolute;
+  top: 40%; 
+  right: 2%; 
+  width: 600px; 
+  height: auto;
+  z-index: 100;
+  transform: scaleX(-1);
+}
