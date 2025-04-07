@@ -56,7 +56,15 @@ function Questionnaire()  {
     //Affichage
 
     return (
-        <div className="questionnaire-container">
+         
+        <div 
+            className="questionnaire-container"
+            style={{
+            backgroundImage: `url('/point_interrogation.jpg')`, 
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            }}>
 
             <div className="questionnaire">
                 <form>
@@ -185,6 +193,7 @@ function Questionnaire()  {
             </div>
 
         </div>
+        
     )
 }
 
