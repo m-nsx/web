@@ -49,7 +49,10 @@ function Vote() {
     setTargets(generateTargets());
 
     const gameDuration = 10000; // 10 seconds
+    const moveInterval = setInterval(moveTargets, 500); // Déplace les cibles toutes les 500ms
+
     setTimeout(() => {
+      clearInterval(moveInterval);
       setIsPlaying(false);
     }, gameDuration);
   };
@@ -88,6 +91,25 @@ function Vote() {
       };
       return [...updatedTargets, newTarget];
     });
+  };
+
+  const moveTargets = () => {
+    setTargets((prevTargets) =>
+      prevTargets.map((target) => {
+        // Génère un déplacement aléatoire ou laisse la cible sur place
+        const shouldMove = Math.random() > 0.5; // 50% de chance de bouger
+        if (!shouldMove) return target;
+
+        const newX = Math.min(Math.max(target.x + (Math.random() * 10 - 5), 0), 90); // Déplacement horizontal
+        const newY = Math.min(Math.max(target.y + (Math.random() * 10 - 5), 0), 90); // Déplacement vertical
+
+        return {
+          ...target,
+          x: newX,
+          y: newY,
+        };
+      })
+    );
   };
 
   return (
@@ -137,7 +159,7 @@ function Vote() {
             width: '600px',
             height: '600px',
             border: '1px solid #ccc',
-            margin: '20px 10%',
+            margin: '20px 25%',
             backgroundImage: 'url(/images/rond-point.jpg)', // URL de l'image de fond
             backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
             backgroundSize: 'contain', // Ajuste l'image pour couvrir toute la zone
