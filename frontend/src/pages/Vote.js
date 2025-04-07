@@ -59,9 +59,9 @@ function Vote() {
     for (let i = 0; i < 5; i++) {
       newTargets.push({
         id: i,
-        x: Math.random() * 85 + 5, // Position aléatoire entre 5% et 95%
-        y: Math.random() * 85 + 5,
-        size: Math.random() * 20 + 20, // Taille aléatoire entre 20px et 40px
+        x: Math.random() * 80 + 10, // Position aléatoire entre 10% et 90%
+        y: Math.random() * 80 + 10,
+        size: Math.random() * 40 + 20, // Taille aléatoire entre 20px et 60px
       });
     }
     return newTargets;
@@ -82,8 +82,9 @@ function Vote() {
       // Ajoute une nouvelle cible avec une position aléatoire
       const newTarget = {
         id: Math.random(), // Utilise un ID unique
-        x: Math.random() * 85 + 5,
-        y: Math.random() * 85 + 5,
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
+        size: Math.random() * 40 + 20,
       };
       return [...updatedTargets, newTarget];
     });
@@ -133,14 +134,15 @@ function Vote() {
         <div
           style={{
             position: 'relative',
-            width: '400px',
-            height: '400px',
+            width: '1000px',
+            height: '1000px',
             border: '1px solid #ccc',
-            margin: '20px 30%',
+            margin: '20px 10%',
             backgroundImage: 'url(/images/rond-point.jpg)', // URL de l'image de fond
             backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
             backgroundSize: 'contain', // Ajuste l'image pour couvrir toute la zone
             backgroundPosition: 'center', // Centre l'image
+            cursor: 'url(/images/crosshair.png) 16 16, crosshair', // Curseur personnalisé
           }}
         >
           {targets.map((target) => (
@@ -157,7 +159,7 @@ function Vote() {
                 backgroundSize: 'contain', // Ajuste l'image pour qu'elle soit entièrement visible
                 backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
                 backgroundPosition: 'center', // Centre l'image
-                cursor: 'pointer',
+                
               }}
             ></div>
           ))}
