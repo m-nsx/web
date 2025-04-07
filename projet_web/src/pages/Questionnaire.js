@@ -78,7 +78,7 @@ function Questionnaire()  {
                                     className="titre-image"
                                 />
                             </div>
-                            <p>Réponds à ces questions d'une importance capitale avant de rejoindre notre nation.</p>
+                            <p>Répondez à ces questions d'une importance capitale avant de rejoindre notre nation.</p>
                         </div>
                     </div>
                     
