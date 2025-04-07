@@ -59,14 +59,22 @@ function Vote() {
     for (let i = 0; i < 5; i++) {
       newTargets.push({
         id: i,
-        x: Math.random() * 80 + 10, // Random position between 10% and 90%
-        y: Math.random() * 80 + 10,
+        x: Math.random() * 85 + 5, // Position aléatoire entre 5% et 95%
+        y: Math.random() * 85 + 5,
+        size: Math.random() * 20 + 20, // Taille aléatoire entre 20px et 40px
       });
     }
     return newTargets;
   };
 
+  const clickSound = new Audio('/sounds/Sniper_sound_effect.mp3');
+
   const handleTargetClick = (id) => {
+    clickSound.currentTime = 1; // Réinitialise le son pour qu'il puisse être joué plusieurs fois rapidement et à partir de 1 seconde
+    clickSound.play();
+    if (!isPlaying) return; // Ignore si le jeu n'est pas en cours
+
+
     setScore((prev) => prev + 1); // Incrémente le score immédiatement
     setTargets((prevTargets) => {
       // Supprime la cible cliquée
@@ -74,8 +82,8 @@ function Vote() {
       // Ajoute une nouvelle cible avec une position aléatoire
       const newTarget = {
         id: Math.random(), // Utilise un ID unique
-        x: Math.random() * 80 + 10, // Position aléatoire entre 10% et 90%
-        y: Math.random() * 80 + 10,
+        x: Math.random() * 85 + 5,
+        y: Math.random() * 85 + 5,
       };
       return [...updatedTargets, newTarget];
     });
@@ -143,8 +151,8 @@ function Vote() {
                 position: 'absolute',
                 top: `${target.y}%`,
                 left: `${target.x}%`,
-                width: '30px',
-                height: '30px',
+                width: `${target.size}px`,
+                height: `${target.size}px`,
                 backgroundImage: 'url(/images/gilet-jaune.jpg)', // Chemin vers l'image du gilet jaune
                 backgroundSize: 'contain', // Ajuste l'image pour qu'elle soit entièrement visible
                 backgroundRepeat: 'no-repeat', // Ne pas répéter l'image

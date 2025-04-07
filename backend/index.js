@@ -54,7 +54,14 @@ const authenticateToken = (req, res, next) => {
 };
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:3000', // Autorise uniquement cette origine
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Autorise ces méthodes HTTP
+  allowedHeaders: ['Content-Type', 'Authorization'], // Autorise ces en-têtes
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.send('Backend is running 👋');
@@ -116,9 +123,9 @@ app.post('/vote', authenticateToken, async (req, res) => {
 });
 
 // Récupérer tous les votes
-app.get('/votes', authenticateToken, async (req, res) => {
+app.get('/votes', async (req, res) => {
   try {
-    const votes = await Vote.find({}, { username: 1, candidate: 1, title: 1, score: 1 }); // Inclure le champ `score`
+    const votes = await Vote.find({}, { username: 1, candidate: 1, title: 1, score: 1 });
     res.send({ votes });
   } catch (error) {
     res.status(500).send({ error: error.message });

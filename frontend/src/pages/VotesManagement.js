@@ -19,9 +19,17 @@ function VotesManagement() {
       .then((data) => setCategories(data.categories || []))
       .catch(() => setCategories([]));
 
-    fetch('http://localhost:5000/votes')
+    fetch('http://localhost:5000/votes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setVotes(data.votes || [])) // Vérifiez que `data.votes` contient bien le champ `score`
+      .then((data) => {
+        console.log('Votes récupérés:', data.votes); // Log des votes récupérés
+        setVotes(data.votes || []);
+      })
       .catch(() => setVotes([]));
   }, []);
 
@@ -113,8 +121,11 @@ function VotesManagement() {
   };
 
   const groupedVotes = votes.reduce((acc, vote) => {
-    if (!acc[vote.title]) acc[vote.title] = [];
-    acc[vote.title].push(vote);
+    if (!acc[vote.title]) acc[vote.title] = {};
+    if (!acc[vote.title][vote.candidate]) {
+      acc[vote.title][vote.candidate] = { name: vote.candidate, value: 0 };
+    }
+    acc[vote.title][vote.candidate].value += vote.score; // Ajoute le score au total
     return acc;
   }, {});
 
@@ -157,15 +168,7 @@ function VotesManagement() {
       <h2>Résultats des Votes</h2>
       {Object.keys(groupedVotes).length > 0 ? (
         Object.keys(groupedVotes).map((category) => {
-          const chartData = groupedVotes[category].reduce((acc, vote) => {
-            const existing = acc.find((item) => item.name === vote.candidate);
-            if (existing) {
-              existing.value += vote.score; // Utilisez le score pour le graphique
-            } else {
-              acc.push({ name: vote.candidate, value: vote.score });
-            }
-            return acc;
-          }, []);
+          const chartData = Object.values(groupedVotes[category]); // Convertit en tableau pour le graphique
 
           return (
             <div key={category} style={{ marginBottom: '50px' }}>
