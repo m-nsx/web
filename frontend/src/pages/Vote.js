@@ -134,8 +134,8 @@ function Vote() {
         <div
           style={{
             position: 'relative',
-            width: '1000px',
-            height: '1000px',
+            width: '600px',
+            height: '600px',
             border: '1px solid #ccc',
             margin: '20px 10%',
             backgroundImage: 'url(/images/rond-point.jpg)', // URL de l'image de fond
