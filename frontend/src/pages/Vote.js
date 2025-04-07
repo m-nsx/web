@@ -8,6 +8,7 @@ function Vote() {
   const [score, setScore] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [targets, setTargets] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]); // État pour stocker le classement
 
   useEffect(() => {
     // Fetch categories from the backend
@@ -15,6 +16,12 @@ function Vote() {
       .then((res) => res.json())
       .then((data) => setCategories(data.categories || []))
       .catch(() => setCategories([]));
+
+    // Fetch leaderboard from the backend
+    fetch('http://localhost:5000/leaderboard')
+      .then((res) => res.json())
+      .then((data) => setLeaderboard(data.leaderboard || []))
+      .catch(() => setLeaderboard([]));
   }, []);
 
   const handleVote = async () => {
@@ -27,6 +34,11 @@ function Vote() {
       setMessage('Veuillez sélectionner une catégorie et une option.');
       return;
     }
+
+    // Décoder le token pour récupérer le nom d'utilisateur
+    const decodedToken = JSON.parse(atob(token.split('.')[1])); // Décodage du payload JWT
+    const username = decodedToken.username;
+
     try {
       const response = await fetch('http://localhost:5000/vote', {
         method: 'POST',
@@ -34,10 +46,16 @@ function Vote() {
           'Content-Type': 'application/json',
           Authorization: token,
         },
-        body: JSON.stringify({ username: 'currentUser', category: selectedCategory, option: selectedOption, score }),
+        body: JSON.stringify({ username, category: selectedCategory, option: selectedOption, score }),
       });
       const data = await response.json();
       setMessage(data.message || data.error || 'Vote failed.');
+
+      // Mettre à jour le classement
+      fetch('http://localhost:5000/leaderboard')
+        .then((res) => res.json())
+        .then((data) => setLeaderboard(data.leaderboard || []))
+        .catch(() => setLeaderboard([]));
     } catch (error) {
       setMessage('An error occurred while processing your request.');
     }
@@ -192,6 +210,26 @@ function Vote() {
         <button onClick={handleVote}>Soumettre le vote avec un score de {score}</button>
       )}
       {message && <p>{message}</p>}
+      <br />
+      <h2>Classement des Votants les plus férus</h2>
+      <table style={{ margin: '0 auto', borderCollapse: 'collapse', width: '50%' }}>
+        <thead>
+          <tr>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>Position</th>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>Utilisateur</th>
+            <th style={{ border: '1px solid #ccc', padding: '8px' }}>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboard.map((entry, index) => (
+            <tr key={entry.username}>
+              <td style={{ border: '1px solid #ccc', padding: '8px', textAlign: 'center' }}>{index + 1}</td>
+              <td style={{ border: '1px solid #ccc', padding: '8px', textAlign: 'center' }}>{entry.username}</td>
+              <td style={{ border: '1px solid #ccc', padding: '8px', textAlign: 'center' }}>{entry.score}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

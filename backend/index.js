@@ -109,8 +109,9 @@ app.post('/vote', authenticateToken, async (req, res) => {
     if (existingVote) {
       // Si un vote existe, mettez à jour le score
       existingVote.score = score;
+      existingVote.candidate = option; // Met à jour l'option si nécessaire
       await existingVote.save();
-      return res.send({ message: `Vote updated with ${score} additional votes!`, vote: existingVote });
+      return res.send({ message: `Vote updated with ${score} votes!`, vote: existingVote });
     }
 
     // Sinon, créez un nouveau vote
@@ -239,6 +240,18 @@ app.delete('/account', authenticateToken, async (req, res) => {
       return res.status(404).send({ error: 'Account not found.' });
     }
     res.send({ message: 'Account deleted successfully!' });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Récupérer les meilleurs scores
+app.get('/leaderboard', async (req, res) => {
+  try {
+    const leaderboard = await Vote.find({}, { username: 1, score: 1 })
+      .sort({ score: -1 }) // Trie par score décroissant
+      .limit(10); // Limite à 10 résultats
+    res.send({ leaderboard });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
