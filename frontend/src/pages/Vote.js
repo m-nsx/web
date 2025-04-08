@@ -88,7 +88,7 @@ function Vote() {
     return newTargets;
   };
 
-  const clickSound = new Audio('/sounds/Sniper_sound_effect.mp3');
+  const clickSound = new Audio('/sounds/sniper.mp3');
 
   const handleTargetClick = (id) => {
     clickSound.currentTime = 1; // Réinitialise le son pour qu'il puisse être joué plusieurs fois rapidement et à partir de 1 seconde
@@ -195,7 +195,7 @@ function Vote() {
                 left: `${target.x}%`,
                 width: `${target.size}px`,
                 height: `${target.size}px`,
-                backgroundImage: 'url(/images/gilet-jaune.jpg)', // Chemin vers l'image du gilet jaune
+                backgroundImage: 'url(/images/gilet-jaune.png)', // Chemin vers l'image du gilet jaune
                 backgroundSize: 'contain', // Ajuste l'image pour qu'elle soit entièrement visible
                 backgroundRepeat: 'no-repeat', // Ne pas répéter l'image
                 backgroundPosition: 'center', // Centre l'image

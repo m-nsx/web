@@ -9,6 +9,11 @@ body {
   line-height: 1.6;
 }
 
+.target {
+  position: absolute;
+  transition: top 0.5s ease, left 0.5s ease; /* Transition fluide pour les déplacements */
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: #222;
@@ -26,19 +31,25 @@ a:hover {
 
 button {
   font-family: 'Roboto', sans-serif;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1em;
+  font-weight: bold; /* Texte en gras */
+  color: white; /* Texte blanc */
+  background-color: green; /* Cercle gris */
+  border: 10px solid gray; /* Bordure verte */
+  border-radius: 50%; /* Forme circulaire */
+  width: 80px; /* Largeur du bouton */
+  height: 80px; /* Hauteur du bouton (égale à la largeur pour un cercle parfait) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre pour un effet 3D */
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  transform: scale(1.1); /* Agrandissement au survol */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+  background-color: darkgray; /* Change la couleur de fond au survol */
 }
 
 input, select {
