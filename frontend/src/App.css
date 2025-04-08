@@ -9,9 +9,7 @@
   --font-family: 'Poppins', sans-serif; /* Rounded font */
 }
 
-body {
-  font-family: var(--font-family);
-}
+
 
 .App {
   text-align: center;
@@ -75,11 +73,13 @@ body {
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centre les éléments horizontalement */
+  align-items: center; /* Aligne les éléments verticalement */
   gap: 20px;
   background-color: var(--primary-color);
   padding: 15px;
   border-bottom: 3px solid var(--primary-dark);
+  flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
 
 nav a {
@@ -105,16 +105,14 @@ nav a[href="/leader"] {
 
 nav button {
   background: none;
-  border: none;
-  color: white; /* Ensure text color is white */
+  border: 2px solid white;
+  color: white;
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 50px; /* Fully rounded buttons */
   text-align: center;
-  display: inline-block;
-  white-space: nowrap;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -122,6 +120,10 @@ nav button:hover {
   background-color: var(--primary-dark);
   transform: scale(1.1);
   color: white; /* Keep text color white on hover */
+}
+
+nav button:last-child {
+  margin-left: 20px; /* Ajoute un espace entre le bouton Déconnexion et les autres éléments */
 }
 
 .page {
@@ -235,4 +237,130 @@ input:focus, select:focus {
   font-weight: bold;
   margin-top: 40px;
   font-family: var(--font-family);
+}
+
+/* Supprimez les styles liés aux voitures */
+.car-container {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1; */
+}
+
+.car {
+  /* position: absolute;
+  right: -100px;
+  width: 100px;
+  height: auto;
+  animation: moveCar linear infinite;
+  cursor: pointer;
+  transition: transform 0.2s ease; */
+}
+
+.car:active {
+  /* transform: scale(1.2); */
+}
+
+@keyframes moveCar {
+  /* from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-110vw);
+  } */
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 5px dashed var(--primary-color);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+  animation: popup-bounce 0.5s ease-in-out;
+}
+
+.popup p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}
+
+.popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 1.2em;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.popup button:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+@keyframes popup-bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.block-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  text-align: center;
+  animation: fade-in 1s ease-in-out;
+}
+
+.block-screen h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: red;
+  text-shadow: 2px 2px 5px black;
+}
+
+.block-screen p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.block-screen img {
+  max-width: 200px;
+  margin-top: 20px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

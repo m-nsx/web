@@ -1,0 +1,98 @@
+.vote-page {
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  font-family: 'Poppins', sans-serif;
+}
+
+.vote-page h1 {
+  font-size: 2.5em;
+  color: #b22222;
+  margin-bottom: 20px;
+}
+
+.vote-page p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.vote-form {
+  margin-bottom: 30px;
+}
+
+.vote-form select {
+  padding: 10px;
+  border: 2px solid #b22222;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.vote-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.vote-card {
+  background-color: white;
+  border: 2px solid #b22222;
+  border-radius: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vote-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.vote-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.vote-card h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.vote-card button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vote-card button:hover {
+  background-color: #8b0000;
+  transform: scale(1.1);
+}
+
+.selected-candidate {
+  margin-top: 20px;
+}
+
+.selected-candidate p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.vote-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #b22222;
+}
