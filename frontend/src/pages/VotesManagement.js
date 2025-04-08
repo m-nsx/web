@@ -84,8 +84,8 @@ function VotesManagement() {
 
   const handleEditVote = (vote) => {
     setEditingVote(vote);
-    setEditCandidate(vote.candidate);
-    setEditCategory(vote.title);
+    setEditCandidate(vote.option);
+    setEditCategory(vote.category);
   };
 
   const handleUpdateVote = async () => {
@@ -121,11 +121,11 @@ function VotesManagement() {
   };
 
   const groupedVotes = votes.reduce((acc, vote) => {
-    if (!acc[vote.title]) acc[vote.title] = {};
-    if (!acc[vote.title][vote.candidate]) {
-      acc[vote.title][vote.candidate] = { name: vote.candidate, value: 0 };
+    if (!acc[vote.category]) acc[vote.category] = {};
+    if (!acc[vote.category][vote.option]) {
+      acc[vote.category][vote.option] = { name: vote.option, value: 0 };
     }
-    acc[vote.title][vote.candidate].value += vote.score; // Ajoute le score au total
+    acc[vote.category][vote.option].value += vote.score;
     return acc;
   }, {});
 

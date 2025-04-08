@@ -19,11 +19,12 @@ db.once('open', () => {
 
 // Définition du modèle de vote
 const voteSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  candidate: { type: String, required: true },
-  title: { type: String, required: true },
-  score: { type: Number, required: true }, // Ajout du champ score
+  username: { type: String, required: true },
+  category: { type: String, required: true },
+  option: { type: String, required: true },
+  score: { type: Number, required: true },
 });
+voteSchema.index({ username: 1, category: 1 }, { unique: true });
 const Vote = mongoose.model('Vote', voteSchema);
 
 // Define the schema and model for categories
@@ -105,20 +106,24 @@ app.post('/vote', authenticateToken, async (req, res) => {
   }
   try {
     // Vérifiez si un vote existe déjà pour cet utilisateur et cette catégorie
-    const existingVote = await Vote.findOne({ username, title: category });
+    const existingVote = await Vote.findOne({ username, category });
     if (existingVote) {
       // Si un vote existe, mettez à jour le score
       existingVote.score = score;
-      existingVote.candidate = option; // Met à jour l'option si nécessaire
+      existingVote.title = option; // Met à jour l'option si nécessaire
       await existingVote.save();
       return res.send({ message: `Vote updated with ${score} votes!`, vote: existingVote });
     }
 
     // Sinon, créez un nouveau vote
-    const vote = new Vote({ username, candidate: option, title: category, score });
+    const vote = new Vote({ username, category, option, score });
     await vote.save();
     res.send({ message: `Vote recorded with ${score} votes!`, vote });
   } catch (error) {
+    if (error.code === 11000) {
+      // Erreur d'unicité (duplicate key)
+      return res.status(400).send({ error: 'You have already voted for this category.' });
+    }
     res.status(500).send({ error: error.message });
   }
 });
@@ -126,7 +131,7 @@ app.post('/vote', authenticateToken, async (req, res) => {
 // Récupérer tous les votes
 app.get('/votes', async (req, res) => {
   try {
-    const votes = await Vote.find({}, { username: 1, candidate: 1, title: 1, score: 1 });
+    const votes = await Vote.find({}, { username: 1, category: 1, option: 1, score: 1 });
     res.send({ votes });
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -135,15 +140,15 @@ app.get('/votes', async (req, res) => {
 
 // Mettre à jour un vote
 app.put('/vote', async (req, res) => {
-  const { username, candidate, title, score } = req.body;
-  if (!username || !candidate || !title || typeof score !== 'number' || score <= 0) {
+  const { username, category, option, score } = req.body;
+  if (!username || !category || !option || typeof score !== 'number' || score <= 0) {
     return res.status(400).send({ error: 'All fields are required, and score must be a positive number.' });
   }
   try {
     const vote = await Vote.findOneAndUpdate(
-      { username, title },
-      { candidate, $inc: { score } }, // Incrémente le score
-      { new: true } // Retourne le document mis à jour
+      { username, category },
+      { option, $inc: { score } }, // Mise à jour des champs
+      { new: true }
     );
     if (!vote) {
       return res.status(404).send({ error: 'Vote not found.' });
@@ -248,10 +253,28 @@ app.delete('/account', authenticateToken, async (req, res) => {
 // Récupérer les meilleurs scores
 app.get('/leaderboard', async (req, res) => {
   try {
-    const leaderboard = await Vote.find({}, { username: 1, score: 1 })
-      .sort({ score: -1 }) // Trie par score décroissant
-      .limit(10); // Limite à 10 résultats
-    res.send({ leaderboard });
+    const leaderboard = await Vote.aggregate([
+      {
+        $group: {
+          _id: '$username', // Grouper par username
+          maxScore: { $max: '$score' }, // Obtenir le score maximum pour chaque utilisateur
+        },
+      },
+      {
+        $sort: { maxScore: -1 }, // Trier par score décroissant
+      },
+      {
+        $limit: 10, // Limiter à 10 résultats
+      },
+    ]);
+
+    // Reformater les données pour inclure `username` au lieu de `_id`
+    const formattedLeaderboard = leaderboard.map((entry) => ({
+      username: entry._id,
+      score: entry.maxScore,
+    }));
+
+    res.send({ leaderboard: formattedLeaderboard });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -263,6 +286,7 @@ app.listen(PORT, async () => {
     // Supprimez les données si nécessaire (optionnel)
     await Vote.deleteMany({}); // Supprime tous les votes
     await Category.deleteMany({}); // Supprime toutes les catégories
+    await Vote.syncIndexes();
     console.log('Base de données réinitialisée avec succès.');
   } catch (error) {
     console.error('Erreur lors de la réinitialisation de la base de données :', error.message);

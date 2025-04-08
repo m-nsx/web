@@ -35,8 +35,7 @@ function Vote() {
       return;
     }
 
-    // Décoder le token pour récupérer le nom d'utilisateur
-    const decodedToken = JSON.parse(atob(token.split('.')[1])); // Décodage du payload JWT
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const username = decodedToken.username;
 
     try {
@@ -51,7 +50,6 @@ function Vote() {
       const data = await response.json();
       setMessage(data.message || data.error || 'Vote failed.');
 
-      // Mettre à jour le classement
       fetch('http://localhost:5000/leaderboard')
         .then((res) => res.json())
         .then((data) => setLeaderboard(data.leaderboard || []))
