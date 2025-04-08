@@ -6,6 +6,12 @@ import './Mechant.css';
 
 
 function Mechant()  {
+    useEffect(() => {
+            document.body.className = "mechant-page";
+            return () => {
+                document.body.className = ""; 
+            };
+        }, []);
 
     return (
         

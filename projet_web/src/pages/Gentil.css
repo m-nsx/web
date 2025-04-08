@@ -1,10 +1,12 @@
-body {
+body.gentil-page {
+  overflow: hidden; 
+  height: 100%;
   margin: 0;
   padding: 0;
-
   background-size: cover; 
   color: white;
-}
+} 
+  
 
 .Pas_Gilet_Jaune {
   display: flex;
@@ -35,9 +37,11 @@ body {
   position: relative;
   align-items: center;
   width: 100%;
-  max-width: 500px;
+  max-width: 350px;
   height: auto;
   margin: 0 auto;
+  margin-top: -20px; 
+  
 }
 
 .emoji_pouce {

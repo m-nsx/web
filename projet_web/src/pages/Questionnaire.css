@@ -1,3 +1,8 @@
+body.questionnaire-page {
+  overflow: auto !important; 
+  height: auto !important; 
+}
+
 .Titre {
   display: flex;
   flex-direction: row;
@@ -44,10 +49,11 @@
 
 
 .questionnaire-container {
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 120vh; 
+  min-height: 120vh;
   background-color: #ffffff; 
 }
 

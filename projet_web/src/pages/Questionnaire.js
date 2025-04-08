@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './Questionnaire.css';
 
@@ -10,6 +11,13 @@ function Questionnaire()  {
     const [reponse, setReponse] = useState({"q1":null, "q2":null, "q3":null, "q4":null, "q5":null});
     const [score, setScore] = useState(null);
     const [erreur, setErreur] = useState("");
+
+    useEffect(() => {
+                document.body.className = "questionnaire-page";
+                return () => {
+                    document.body.className = ""; 
+                };
+            }, []);
 
     // Fonctions
     const ChangerValeur = (question, valeur) => {
@@ -64,6 +72,7 @@ function Questionnaire()  {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
             }}>
 
             <div className="questionnaire">
@@ -82,7 +91,7 @@ function Questionnaire()  {
                         </div>
                     </div>
                     
-                    <h1>{score}</h1>
+            
 
                     {/* Question 1 */}
                     <div className="question">
