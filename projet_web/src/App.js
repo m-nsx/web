@@ -10,6 +10,7 @@ function App() {
                 <Route path="/" element={<Questionnaire />} />
                 <Route path="/Gentil" element={<Gentil />} />
                 <Route path="/Mechant" element={<Mechant />} />
+                <Route path="/Home" element={<Home />} />
             </Routes>
         </BrowserRouter>
     );
