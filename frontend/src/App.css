@@ -73,13 +73,11 @@
 
 nav {
   display: flex;
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Aligne les éléments verticalement */
+  justify-content: center;
   gap: 20px;
   background-color: var(--primary-color);
   padding: 15px;
   border-bottom: 3px solid var(--primary-dark);
-  flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
 
 nav a {
@@ -105,14 +103,16 @@ nav a[href="/leader"] {
 
 nav button {
   background: none;
-  border: 2px solid white;
-  color: white;
+  border: none;
+  color: white; /* Ensure text color is white */
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 50px; /* Fully rounded buttons */
   text-align: center;
+  display: inline-block;
+  white-space: nowrap;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -120,10 +120,6 @@ nav button:hover {
   background-color: var(--primary-dark);
   transform: scale(1.1);
   color: white; /* Keep text color white on hover */
-}
-
-nav button:last-child {
-  margin-left: 20px; /* Ajoute un espace entre le bouton Déconnexion et les autres éléments */
 }
 
 .page {

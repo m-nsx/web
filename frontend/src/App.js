@@ -14,8 +14,7 @@ import { useState } from 'react';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
-  // Utilisez la présence du cookie pour déterminer si l'utilisateur est "méchant"
-  const isBlocked = document.cookie.includes('giletJaune=true');
+  const [isBlocked, setIsBlocked] = useState(document.cookie.includes('giletJaune=true'));
   const navigate = useNavigate();
 
   const handleLogin = (newToken) => {
@@ -27,63 +26,52 @@ function App() {
     setToken(null);
   };
 
-  // Si l'utilisateur est "méchant", toujours afficher la page Mechant
-  if (isBlocked) {
-    return <Mechant />;
-  }
-
   return (
     <div className="App">
-      <div className="banner">
-        <span>Bienvenue dans la République Imaginaire</span>
-      </div>
-      <nav>
-        <Link to="/">Accueil</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/leader">Notre Leader</Link>
-        {/* Removed game link */}
-        {!token && (
-          <Link to="/questionnaire" style={{ color: 'blue', textDecoration: 'underline' }}>
-            Authentification
-          </Link>
-        )}
-        {token && (
-          <>
-            <Link to="/vote">Vote</Link>
-            <Link to="/votes-management">Gestion des Votes</Link>
-            <Link to="/account">Mon Compte</Link>
-            <button
-              onClick={handleLogout}
-              style={{
-                backgroundColor: 'var(--primary-color)',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                padding: '10px 20px',
-                borderRadius: '50px',
-                fontSize: '1.2em',
-                fontWeight: 'bold',
-                marginLeft: '20px'
-              }}
-            >
-              Déconnexion
-            </button>
-          </>
-        )}
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
-        <Route path="/questionnaire" element={<Questionnaire />} /> {/* Route pour le questionnaire */}
-        <Route path="/gentil" element={<Gentil />} /> {/* Route pour la page Gentil */}
-        <Route path="/mechant" element={<Mechant />} /> {/* Route pour la page Mechant */}
-        {token && <Route path="/vote" element={<Vote />} />}
-        {token && <Route path="/votes-management" element={<VotesManagement />} />}
-        {token && <Route path="/account" element={<Account />} />}
-        <Route path="/leader" element={<Leader />} />
-        {/* Removed game route */}
-      </Routes>
+      {isBlocked && (
+        <div className="block-screen">
+          <h1>Accès refusé 🚫</h1>
+          <p>
+            Vous êtes certifié Gilet Jaune. <br />
+            La République Imaginaire ne peut pas tolérer cela ! 😤
+          </p>
+          <img src="/images/no-access.png" alt="No Access" />
+        </div>
+      )}
+      {!isBlocked && (
+        <>
+          <div className="banner">
+            <span>Bienvenue dans la République des Ronds Point</span>
+          </div>
+          <nav>
+            <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> | <Link to="/leader">Notre Leader</Link> |{' '}
+            <Link to="/questionnaire" style={{ color: 'blue', textDecoration: 'underline' }}>
+              Authentification
+            </Link>{' '}
+            | {!token ? null : (
+              <>
+                <Link to="/vote">Vote</Link> | <Link to="/votes-management">Gestion des Votes</Link> |{' '}
+                <Link to="/account">Mon Compte</Link> |{' '}
+                <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
+                  Déconnexion
+                </button>
+              </>
+            )}
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+            <Route path="/questionnaire" element={<Questionnaire />} /> {/* Route pour le questionnaire */}
+            <Route path="/gentil" element={<Gentil />} /> {/* Route pour la page Gentil */}
+            <Route path="/mechant" element={<Mechant />} /> {/* Route pour la page Mechant */}
+            {token && <Route path="/vote" element={<Vote />} />}
+            {token && <Route path="/votes-management" element={<VotesManagement />} />}
+            {token && <Route path="/account" element={<Account />} />}
+            <Route path="/leader" element={<Leader />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }

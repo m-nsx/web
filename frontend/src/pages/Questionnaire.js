@@ -27,31 +27,20 @@ function Questionnaire()  {
 
 
     const AfficherResultat = () => {
-        const questionsRepondues = {q1: false, q2: false, q3: false, q4: false, q5: false};
-        
-        // Marquer chaque question comme répondue ou non
-        Object.keys(reponse).forEach(key => {
-            if (reponse[key] !== null) {
-                questionsRepondues[key] = true;
-            }
-        });
-        
-        // Vérifier si toutes les questions sont répondues
-        const toutesQuestionsRepondues = Object.values(questionsRepondues).every(val => val === true);
-    
+        const toutesQuestionsRepondues = Object.values(reponse).every(val => val !== null);
+
         if (!toutesQuestionsRepondues) {
             setErreur("Veuillez répondre à toutes les questions !");
             return;
         }
-    
+
         setErreur("");
         if (score >= 3) {
-            // Si score >= 3, définissez le cookie et redirigez vers la page Mechant
-            document.cookie = 'giletJaune=true; path=/; max-age=31536000';
-            navigate('/mechant');
+            document.cookie = 'giletJaune=true; path=/; max-age=31536000'; // Bloque l'utilisateur
+            navigate('/mechant'); // Redirige vers la page Mechant
         } else {
-            navigate('/gentil');
-            setTimeout(() => navigate('/auth'), 5000);
+            navigate('/gentil'); // Redirige vers la page Gentil
+            setTimeout(() => navigate('/auth'), 5000); // Redirige vers Auth après 5 secondes
         }
     }
 
@@ -59,7 +48,7 @@ function Questionnaire()  {
     //Affichage
 
     return (
-         
+             
         <div 
             className="questionnaire-container"
             style={{
@@ -197,7 +186,7 @@ function Questionnaire()  {
 
         </div>
         
-    )
+)
 }
 
 

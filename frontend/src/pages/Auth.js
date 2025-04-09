@@ -1,21 +1,33 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Auth({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
   const [isBlocked, setIsBlocked] = useState(document.cookie.includes('giletJaune=true'));
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isBlocked) {
       setMessage('Vous êtes bloqué en raison de votre certification Gilet Jaune.');
       return;
     }
-    proceedWithLogin();
+
+    setShowQuestionnaire(true); // Affiche le questionnaire avant de permettre la connexion
+  };
+
+  const handleQuestionnaireResponse = (response) => {
+    if (response === 'yes') {
+      document.cookie = 'giletJaune=true; path=/; max-age=31536000'; // Bloque l'utilisateur pendant 1 an
+      setMessage('Vous êtes certifié Gilet Jaune. Accès refusé.');
+      setIsBlocked(true);
+    } else {
+      setShowQuestionnaire(false);
+      proceedWithLogin(); // Continue avec la connexion
+    }
   };
 
   const proceedWithLogin = async () => {
@@ -34,7 +46,6 @@ function Auth({ onLogin }) {
         if (!isRegistering) {
           localStorage.setItem('token', data.token);
           onLogin(data.token);
-          navigate('/'); // Redirect directly to home
         }
       }
     } catch (error) {
@@ -43,18 +54,16 @@ function Auth({ onLogin }) {
   };
 
   return (
-    <div className="page" style={{ fontFamily: 'Poppins, sans-serif' }}>
+    <div className="page">
       {isBlocked ? (
         <div>
-          <h1 style={{ fontFamily: 'Poppins, sans-serif' }}>Accès refusé 🚫</h1>
-          <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Vous êtes certifié Gilet Jaune. Veuillez effacer vos cookies pour réessayer.
-          </p>
+          <h1>Accès refusé 🚫</h1>
+          <p>Vous êtes certifié Gilet Jaune. Veuillez effacer vos cookies pour réessayer.</p>
         </div>
       ) : (
-        <div className="card" style={{ maxWidth: '400px', margin: '0 auto', fontFamily: 'Poppins, sans-serif' }}>
+        <div className="card" style={{ maxWidth: '400px', margin: '0 auto' }}>
           <h1>{isRegistering ? 'Inscription' : 'Connexion'}</h1>
-          <form onSubmit={handleSubmit} style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <form onSubmit={handleSubmit}>
             <label>
               Nom d'utilisateur:
               <input
@@ -81,12 +90,19 @@ function Auth({ onLogin }) {
               border: 'none',
               cursor: 'pointer',
               marginTop: '10px',
-              fontFamily: 'Poppins, sans-serif',
             }}
           >
             {isRegistering ? 'Déjà inscrit ? Connectez-vous' : "Pas de compte ? Inscrivez-vous"}
           </button>
-          {message && <p style={{ color: 'red', fontFamily: 'Poppins, sans-serif' }}>{message}</p>}
+          {message && <p style={{ color: 'red' }}>{message}</p>}
+        </div>
+      )}
+
+      {showQuestionnaire && (
+        <div className="popup">
+          <p>Êtes-vous un gilet jaune ? 🤔</p>
+          <button onClick={() => handleQuestionnaireResponse('yes')}>Oui, je le suis !</button>
+          <button onClick={() => handleQuestionnaireResponse('no')}>Non, jamais !</button>
         </div>
       )}
     </div>
