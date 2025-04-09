@@ -5,29 +5,15 @@ function Auth({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
   const [isBlocked, setIsBlocked] = useState(document.cookie.includes('giletJaune=true'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (isBlocked) {
-      setMessage('Vous êtes bloqué en raison de votre certification Gilet Jaune.');
+      setMessage('Vous êtes certifié Gilet Jaune. Veuillez effacer vos cookies pour réessayer.');
       return;
     }
-
-    setShowQuestionnaire(true); // Affiche le questionnaire avant de permettre la connexion
-  };
-
-  const handleQuestionnaireResponse = (response) => {
-    if (response === 'yes') {
-      document.cookie = 'giletJaune=true; path=/; max-age=31536000'; // Bloque l'utilisateur pendant 1 an
-      setMessage('Vous êtes certifié Gilet Jaune. Accès refusé.');
-      setIsBlocked(true);
-    } else {
-      setShowQuestionnaire(false);
-      proceedWithLogin(); // Continue avec la connexion
-    }
+    proceedWithLogin();
   };
 
   const proceedWithLogin = async () => {
@@ -95,14 +81,6 @@ function Auth({ onLogin }) {
             {isRegistering ? 'Déjà inscrit ? Connectez-vous' : "Pas de compte ? Inscrivez-vous"}
           </button>
           {message && <p style={{ color: 'red' }}>{message}</p>}
-        </div>
-      )}
-
-      {showQuestionnaire && (
-        <div className="popup">
-          <p>Êtes-vous un gilet jaune ? 🤔</p>
-          <button onClick={() => handleQuestionnaireResponse('yes')}>Oui, je le suis !</button>
-          <button onClick={() => handleQuestionnaireResponse('no')}>Non, jamais !</button>
         </div>
       )}
     </div>

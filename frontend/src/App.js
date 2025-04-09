@@ -44,17 +44,9 @@ function App() {
             <span>Bienvenue dans la République des Ronds Point</span>
           </div>
           <nav>
-            <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> | <Link to="/leader">Notre Leader</Link> |{' '}
-            <Link to="/questionnaire" style={{ color: 'blue', textDecoration: 'underline' }}>
-              Authentification
-            </Link>{' '}
-            | {!token ? null : (
+            <Link to="/">Accueil</Link> | <Link to="/contact">Contact</Link> | <Link to="/leader">Notre Leader</Link> | <Link to="/questionnaire">Authentification</Link> | {!token ? null : (
               <>
-                <Link to="/vote">Vote</Link> | <Link to="/votes-management">Gestion des Votes</Link> |{' '}
-                <Link to="/account">Mon Compte</Link> |{' '}
-                <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
-                  Déconnexion
-                </button>
+                <Link to="/vote">Vote</Link> | <Link to="/votes-management">Gestion des Votes</Link> | <Link to="/account">Mon Compte</Link> | <button onClick={handleLogout}>Déconnexion</button>
               </>
             )}
           </nav>
