@@ -1,0 +1,153 @@
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1500px;
+    margin-bottom: 30px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titre {
+    background-color: #f8de18;
+}
+
+.introduction {
+    background-color: #e3f2fd;
+}
+
+.symboles_nationaux {
+    background-color: #c8e6c9;
+}
+
+.regime {
+    background-color: #ffe0b2;
+}
+
+.enemies {
+    background-color: #ffcdd2;
+}
+
+h1, h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+p {
+    margin: 0;
+    line-height: 1.6;
+    color: #666;
+}
+
+.macron-prince {
+    position: relative;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+
+
+.video {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.video iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border: none;
+    border: 3px solid #333;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.nombre-rond-points {
+    font-size: 5rem; 
+    font-weight: bold; 
+    color: #333; 
+    text-align: center; 
+    display: block; 
+    margin-top: 20px; 
+}
+
+
+.symboles_nationaux {
+    background-color: #c8e6c9;
+    text-align: center; /* Centre le texte dans le conteneur */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.images-container {
+    display: flex;
+    flex-direction: column; /* Aligne les items verticalement */
+    gap: 40px; /* Ajoute un espacement entre chaque image-item */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.image-item {
+    display: flex;
+    flex-direction: column; /* Aligne le titre, l'image et le texte verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    gap: 10px; /* Ajoute un espace entre le titre, l'image et le texte */
+}
+
+.image-title {
+    font-size: 2rem; 
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; 
+    text-align: center; 
+}
+
+.image-content {
+    display: flex;
+    align-items: center; 
+    gap: 20px; 
+    width: 100%; 
+}
+
+.image-content img {
+    margin-left: 100px;
+    max-width: 400px; 
+    height: auto; 
+    border: 3px solid #333; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.image-text {
+    flex: 1; 
+    text-align: left; 
+}
+
+.image-text p {
+    font-size: 1rem; 
+    color: #000000;
+    line-height: 1.6;
+}
+
+.symboles_nationaux iframe{
+    display : none;
+}
