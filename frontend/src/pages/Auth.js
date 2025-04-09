@@ -25,10 +25,13 @@ function Auth({ onLogin }) {
         ? await registerUser({ username, password })
         : await loginUser({ username, password });
 
+      console.log('Backend response:', data); // Log backend response
+
       if (data.error) {
-        setMessage(data.error);
+        console.error('Error from backend:', data.error); // Log backend error
+        setMessage("DATA ERROR: " + data.error);
       } else {
-        setMessage(data.message);
+        setMessage("DATA MESSAGE: " + data.message);
         if (!isRegistering) {
           localStorage.setItem('token', data.token);
           onLogin(data.token);
@@ -36,6 +39,7 @@ function Auth({ onLogin }) {
         }
       }
     } catch (error) {
+      console.error('Error during authentication:', error.message); // Log error
       setMessage('An error occurred.');
     }
   };

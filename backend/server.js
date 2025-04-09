@@ -13,9 +13,14 @@ dotenv.config();
 
 // Create an express application
 const app = express();
-const PORT = process.env.BACK_PORT || 5000;
+const PORT = 5000;
 
-app.use(cors());
+// Update CORS configuration
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from the frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+}));
 
 // Allow the server to accept JSON data in the body of the request for parsing
 app.use(express.json());

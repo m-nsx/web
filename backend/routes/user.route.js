@@ -9,13 +9,19 @@ const SECRET_KEY = 'azyudgugyTUtygtuyudzgygyezGYHGYF1653749';
 // User registration
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
+    console.log('Register request received:', { username }); // Log request data
     if (!username || !password) return res.status(400).send({ error: 'All fields are required.' });
     try {
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(400).send({ error: 'Username already exists.' });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ username, password: hashedPassword });
         await user.save();
         res.send({ message: 'User registered successfully!' });
     } catch (error) {
+        console.error('Error during registration:', error.message); // Log error
         res.status(500).send({ error: error.message });
     }
 });
@@ -23,15 +29,23 @@ router.post('/register', async (req, res) => {
 // User login
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
+    console.log('Login request received:', { username }); // Log request data
     if (!username || !password) return res.status(400).send({ error: 'All fields are required.' });
     try {
         const user = await User.findOne({ username });
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+        if (!user) {
+            console.error('User not found:', username); // Log error
+            return res.status(401).send({ error: 'Invalid credentials' });
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            console.error('Invalid password for user:', username); // Log error
             return res.status(401).send({ error: 'Invalid credentials' });
         }
         const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1h' });
         res.send({ message: 'Login successful!', token });
     } catch (error) {
+        console.error('Error during login:', error.message); // Log error
         res.status(500).send({ error: error.message });
     }
 });
