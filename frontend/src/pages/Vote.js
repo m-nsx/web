@@ -133,40 +133,42 @@ function Vote() {
   return (
     <div className="page">
       <h1>Vote</h1>
-      <label>
-        Catégorie:
-        <select
-          value={selectedCategory}
-          onChange={(e) => {
-            setSelectedCategory(e.target.value);
-            setSelectedOption(''); // Reset selected option when category changes
-          }}
-        >
-          <option value="">Sélectionnez une catégorie</option>
-          {categories.map((category) => (
-            <option key={category.name} value={category.name}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Option:
-        <select
-          value={selectedOption}
-          onChange={(e) => setSelectedOption(e.target.value)}
-          disabled={!selectedCategory} // Disable if no category is selected
-        >
-          <option value="">Sélectionnez une option</option>
-          {categories
-            .find((cat) => cat.name === selectedCategory)?.options.map((option) => (
+      <div className="vote-form-card">
+        <label>
+          Catégorie:
+          <select
+            className="vote-select"
+            value={selectedCategory}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setSelectedOption(''); // Reset option when category changes
+            }}
+          >
+            <option value="">Sélectionnez une catégorie</option>
+            {categories.map((category) => (
+              <option key={category.name} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Option:
+          <select
+            className="vote-select"
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+            disabled={!selectedCategory}
+          >
+            <option value="">Sélectionnez une option</option>
+            {categories.find((cat) => cat.name === selectedCategory)?.options.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
-        </select>
-      </label>
+          </select>
+        </label>
+      </div>
       <br />
       {!isPlaying ? (
         <button onClick={startGame}>Commencer le mini-jeu</button>

@@ -73,7 +73,10 @@ router.delete('/vote', async (req, res) => {
 // Leaderboard
 router.get('/leaderboard', async (req, res) => {
   try {
-    const leaderboard = await getVotesCollection().find({}, { projection: { username: 1, score: 1 } })
+    const category = req.query.category;
+    const filter = category ? { title: category } : {};
+    const leaderboard = await getVotesCollection()
+      .find(filter, { projection: { username: 1, score: 1 } })
       .sort({ score: -1 })
       .limit(10)
       .toArray();

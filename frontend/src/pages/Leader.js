@@ -2,7 +2,7 @@ import React from 'react';
 
 function Leader() {
   return (
-    <div className="page leader-page">
+    <div className="leader-page">
       <div className="header-banner">
         <div className="stars-left">★★★</div>
         <h1>Notre Grand Leader</h1>
@@ -31,7 +31,7 @@ function Leader() {
       
       <div className="leader-description">
         <p className="main-text">
-          Le Grand Rond-Point est la structure qui guide notre République Imaginaire. 
+          Le Grand Rond-Point est la structure qui guide notre Royaume Giratoire. 
           Sous sa direction circulaire, nous tournons sans cesse vers des sommets inégalés de prospérité et d'unité.
           Sa forme parfaitement concentrique et sa vision à 360° ont transformé notre humble nation en une utopie où les véhicules et les idées convergent harmonieusement.
         </p>
@@ -90,7 +90,7 @@ function Leader() {
       </div>
 
       <div className="footer-banner">
-        <p>République Imaginaire - En perpétuelle circulation depuis l'Année Glorieuse 42</p>
+        <p>Royaume Giratoire - En perpétuelle circulation depuis l'Année Glorieuse 42</p>
       </div>
 
       <style>
@@ -98,11 +98,12 @@ function Leader() {
           .leader-page {
             text-align: center;
             padding: 20px;
-            background-color: #f9f2e7;
+            background-color: #f9f2e7 !important;
             color: #333;
             font-family: 'Arial', sans-serif;
             max-width: 900px;
             margin: 0 auto;
+            min-height: 100vh;
           }
           
           .header-banner {

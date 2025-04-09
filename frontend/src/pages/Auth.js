@@ -5,7 +5,8 @@ function Auth({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [isBlocked, setIsBlocked] = useState(document.cookie.includes('giletJaune=true'));
+  const [isBlocked] = useState(document.cookie.includes('giletJaune=true')); // Removed unused setIsBlocked
+  const btnStyle = { display: 'block', margin: '20px auto' };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +67,12 @@ function Auth({ onLogin }) {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
-            <button type="submit">{isRegistering ? "S'inscrire" : 'Se connecter'}</button>
+            <button
+              type="submit"
+              style={btnStyle}
+            >
+              {isRegistering ? "S'inscrire" : 'Se connecter'}
+            </button>
           </form>
           <button
             onClick={() => setIsRegistering(!isRegistering)}

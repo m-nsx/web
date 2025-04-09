@@ -10,13 +10,23 @@ const PORT = 5000;
 const client = new MongoClient('mongodb://127.0.0.1:27017', { useUnifiedTopology: true });
 
 let db, votesCollection, categoriesCollection, usersCollection;
-client.connect().then(() => {
+client.connect().then(async () => {
   // Connexion à la base de données "votesDB"
   db = client.db('votesDB');
   votesCollection = db.collection('votes');
   categoriesCollection = db.collection('categories');
   usersCollection = db.collection('users');
   console.log('Connected to MongoDB');
+  // Drop old unique index on username if it exists
+  try {
+    await votesCollection.dropIndex("username_1");
+    console.log("Dropped old unique index on username");
+  } catch (e) {
+    // Index might not exist, ignore error
+  }
+  // Create a composite unique index on username and title
+  await votesCollection.createIndex({ username: 1, title: 1 }, { unique: true });
+  console.log("Composite index on {username, title} created");
 }).catch(console.error);
 
 const SECRET_KEY = 'azyudgugyTUtygtuyudzgygyezGYHGYF1653749';
@@ -221,8 +231,10 @@ app.delete('/account', authenticateToken, async (req, res) => {
 
 // Récupérer les meilleurs scores
 app.get('/leaderboard', async (req, res) => {
+  const { category } = req.query;
   try {
-    const leaderboard = await votesCollection.find({}, { projection: { username: 1, score: 1 } })
+    const query = category ? { title: category } : {};
+    const leaderboard = await votesCollection.find(query, { projection: { username: 1, score: 1 } })
       .sort({ score: -1 })
       .limit(10)
       .toArray();
