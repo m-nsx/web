@@ -2,6 +2,7 @@ function Home() {
   return (
     <div className="page">
       <h1>Bienvenue</h1>
+      <div></div>
       <p>
         Découvrez la République Imaginaire, un projet ambitieux visant à revendiquer les surfaces inutilisées des rond-points français.
       </p>

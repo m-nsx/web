@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerUser, loginUser } from '../api';
 
 function Auth({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -19,14 +20,11 @@ function Auth({ onLogin }) {
   };
 
   const proceedWithLogin = async () => {
-    const endpoint = isRegistering ? '/register' : '/login';
     try {
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
+      const data = isRegistering
+        ? await registerUser({ username, password })
+        : await loginUser({ username, password });
+
       if (data.error) {
         setMessage(data.error);
       } else {

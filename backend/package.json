@@ -16,6 +16,7 @@
     "mongoose": "^7.0.0",
     "recharts": "^2.15.1",
     "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "mongodb-memory-server": "^8.11.0"
   }
 }

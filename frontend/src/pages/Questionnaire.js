@@ -84,8 +84,6 @@ function Questionnaire()  {
                             <p>Répondez à ces questions d'une importance capitale avant de rejoindre notre nation.</p>
                         </div>
                     </div>
-                    
-                    <h1>{score}</h1>
 
                     {/* Question 1 */}
                     <div className="question">

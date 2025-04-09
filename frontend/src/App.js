@@ -1,5 +1,7 @@
-import './App.css';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+import './App.css';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Auth from './pages/Auth';
@@ -10,7 +12,6 @@ import Leader from './pages/Leader';
 import Questionnaire from './pages/Questionnaire'; // Import du questionnaire
 import Gentil from './pages/Gentil'; // Import de la page Gentil
 import Mechant from './pages/Mechant'; // Import de la page Mechant
-import { useState } from 'react';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -35,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <div className="banner">
-        <span>Bienvenue dans la République Imaginaire</span>
+        <span>Bienvenue au Rondistan</span>
       </div>
       <nav>
         <Link to="/">Accueil</Link>
