@@ -1,13 +1,12 @@
-
 .page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #f7f9fc;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: 'Lora', sans-serif; 
 }
 
 .container {
@@ -16,53 +15,100 @@
     margin-bottom: 30px;
     padding: 20px;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #ffffff; 
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
 }
 
 .titre {
     font-size: large;
     align-items: center;
     display: flex;
+    color: #1a1a1a; 
+    font : 'Lora'
 }
 
 .introduction {
-    background-color: #e3f2fd;
+    position: relative;
+    padding: 30px; 
+    text-align: center; 
+    border-radius: 10px; 
+    margin-bottom: 20px; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.introduction-overlay {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .symboles_nationaux {
-    background-color: #c8e6c9;
+    background-color: #f1f8f5; 
 }
 
 .regime {
-    background-color: #ffe0b2;
+    background-color: #fff7e6; 
 }
 
 .economie {
-    background-color: #ffcdd2;
+    background-color: #e3f2fd; 
 }
 
-h1, h2 {
+h1 {
     margin-bottom: 10px;
-    color: #333;
+    color: #1a1a1a; 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #1a1a1a; 
+    font-size: 3rem;
+    font-weight: bold; 
+}
+
+h1.bienvenue {
+    font-size: 4rem; 
+    font-weight: bold 700; 
+    color: #1a1a1a; 
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Lora', sans-serif; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 p {
     margin: 0;
     line-height: 1.6;
-    color: #000000;
+    color: #333333; 
 }
 
 
-.introduction-text{
+.introduction-content {
+    display: flex; 
+    align-items: center; 
+    gap: -20px; 
+}
+.introduction-text {
     font-size: 1.2rem; 
-    color: #000000; 
-    text-align: left; 
-    margin-bottom: 20px; 
-    margin-left: 120px;
-    text-align: justify;
+    line-height: 1.8;
+    text-align: justify; 
+    margin: 0 auto; 
+    max-width: 800px; 
 }
+
+.rond-point {
+    max-width: 490px; 
+    height: auto; 
+    border: 3px solid #333; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transform: rotate(90deg)
+}
+
 .image-dirigeant {
     display: flex; 
     justify-content: center; 
@@ -79,6 +125,7 @@ p {
 .image-dirigeant img {
     max-width: 400px; 
     height: auto; 
+    border: none; 
  
 }
 
@@ -90,35 +137,17 @@ p {
 }
 
 
-.video {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.video iframe {
-    width: 100%;
-    max-width: 560px;
-    height: 315px;
-    border: none;
-    border: 3px solid #333;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-
 .nombre-rond-points {
     font-size: 5rem; 
-    font-weight: bold; 
-    color: #333; 
-    text-align: center; 
-    display: block; 
-    margin-top: 20px; 
+    font-weight: bold;
+    color: #1a1a1a; 
+    text-align: center;
+    margin-bottom: 20px; 
 }
 
 
 .symboles_nationaux {
-    background-color: #c8e6c9;
+    background-color: #f1f8f5; 
     text-align: center; 
     padding: 20px;
     border-radius: 8px;
@@ -140,9 +169,8 @@ p {
 }
 
 .image-title {
-    font-size: 2rem; 
-    font-weight: bold;
-    color: #333;
+    font-size: 2.5rem; 
+    color: #1a1a1a; 
     margin-bottom: 10px; 
     text-align: center; 
 }
@@ -155,7 +183,7 @@ p {
 }
 
 .image-content img {
-    margin-left: 100px;
+    margin-left: 10px;
     max-width: 400px; 
     height: auto; 
     border: 3px solid #333; 
@@ -175,11 +203,11 @@ p {
 }
 
 .text-box {
-    border: 2px solid #333; 
+    border: 1px solid #dddddd; 
     border-radius: 10px; 
     padding: 15px; 
-    background-color: #dfe9df; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #f9fafb; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
     margin-top: 10px; 
     margin-bottom: 10px; 
 }
@@ -206,7 +234,7 @@ p {
 }
 
 .taux-de-change th {
-    background-color: #f4f4f4; 
+    background-color: #f5f5f5; 
     font-weight: bold; 
 }
 
@@ -220,7 +248,7 @@ p {
 }
 
 .hymne-button {
-    background: linear-gradient(90deg, #4CAF50, #2E7D32); 
+    background: linear-gradient(90deg, #007bff, #0056b3); 
     color: white; 
     border: none; 
     padding: 12px 24px; 
@@ -233,7 +261,7 @@ p {
 }
 
 .hymne-button:hover {
-    background: linear-gradient(90deg, #66BB6A, #388E3C); 
+    background: linear-gradient(90deg, #3399ff, #0073e6); 
     transform: scale(1.05); 
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); 
 }

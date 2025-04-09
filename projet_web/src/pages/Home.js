@@ -1,6 +1,4 @@
-import './Home_2.css';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import './Home.css';
 
 function Home() {
     
@@ -12,18 +10,27 @@ function Home() {
             </div>
 
             <div className="container introduction" style={{ position: 'relative' }}>
-                <span className="nombre-rond-points">42 986</span>
-                <div className="introduction-text">
-                    <p>Voici le nombre de rond-points sur le territoire français, la France détient le record mondial incontesté.</p>
-                    <p>Ces œuvres d'urbanisme circulaire occupent plus de 15km², soit l'équivalent de 34 fois la surface du Vatican.</p>
-                    <p>Et pourtant, personne jusqu'ici n'avait osé leur rendre l'hommage politique qu'ils méritaient…
-                    C'est dans ce vide symbolique qu'est né le Royaume Giratoire de France, un État souverain, visionnaire et résolument rotatif, qui revendique la totalité des ronds-points de l'Hexagone comme territoire sacré et indivisible.</p>
-                    <p>Fondé sur les principes éternels de Circulation, Rotation et Union, notre royaume célèbre ce que les autres nations négligent :
-                    la beauté du mouvement perpétuel, l'harmonie des flux, la justice de la priorité à gauche.
-                    Sous la direction éclairée de Son Altesse Emmanuel Ier, et dans le respect de l'héritage sacré du fondateur Eugène Hénard, le Royaume Giratoire incarne un idéal nouveau : celui d'un peuple uni autour du cœur vibrant de ses giratoires.
-                    Ici, chaque rond-point est une capitale miniature, un carrefour de démocratie, de mémoire et de vitesse maîtrisée.</p>
-                </div>
 
+                <div class="introduction-content">
+                    <img 
+                                    src="/rond-point.png" 
+                                    alt="rond-point" 
+                                    className="rond-point"
+                            />
+                    
+                    <div className="introduction-text">
+                        <span className="nombre-rond-points">42 986</span>
+                        <p>Voici le nombre de rond-points sur le territoire français, la France détient le record mondial incontesté.</p>
+                        <p>Ces œuvres d'urbanisme circulaire occupent plus de 15km², soit l'équivalent de 34 fois la surface du Vatican.</p>
+                        <p>Et pourtant, personne jusqu'ici n'avait osé leur rendre l'hommage politique qu'ils méritaient…
+                        C'est dans ce vide symbolique qu'est né le Royaume Giratoire de France, un État souverain, visionnaire et résolument rotatif, qui revendique la totalité des ronds-points de l'Hexagone comme territoire sacré et indivisible.</p>
+                        <p>Fondé sur les principes éternels de Circulation, Rotation et Union, notre royaume célèbre ce que les autres nations négligent :
+                        la beauté du mouvement perpétuel, l'harmonie des flux, la justice de la priorité à gauche.
+                        Sous la direction éclairée de Son Altesse Emmanuel Ier, et dans le respect de l'héritage sacré du fondateur Eugène Hénard, le Royaume Giratoire incarne un idéal nouveau : celui d'un peuple uni autour du cœur vibrant de ses giratoires.
+                        Ici, chaque rond-point est une capitale miniature, un carrefour de démocratie, de mémoire et de vitesse maîtrisée.</p>
+                    </div>
+                </div>
+                <br/>
             </div>
 
             <div className="container regime" style={{ position: 'relative' }}>
@@ -64,7 +71,7 @@ function Home() {
 
                             <li><p><b>Le Souverain actuel : Son Altesse Emmanuel Ier</b></p></li>
                             <p>Aujourd'hui, le Royaume est dirigé par le Prince Emmanuel Ier, souverain éclairé à la poigne ferme. Issu de la lignée méritocratique des Hauts Fonctionnaires des Mobilités, il règne depuis le Palais du Giravitron, et incarne la stabilité circulaire du pouvoir.</p>
-                            <p>Son rôle est de centraliser la rotation nationale, de maintenir le flux démocratique, et de repousser toute tentative de blocage par les forces centrifuges dites « giletoïdes ».</p>
+                            <p>Son rôle est de centraliser la rotation nationale, de maintenir le flux démocratique, et de repousser toute tentative de blocage par les forces dites « giletoïdes ».</p>
                             <br/>
 
                             <li><p><b>Une monarchie participative</b></p></li>
@@ -86,46 +93,10 @@ function Home() {
                 </div>
             </div>
 
-
             <div className="container symboles_nationaux" style={{ position: 'relative' }}>
             <h2>Nos symboles nationaux</h2>
-            
-            <div className="images-container">
-                <div className="image-item">
-                    <h3 className="image-title">Le Drapeau</h3>
-                    <div className="image-content">
-                        <img 
-                            src="/Drapeau.jpg" 
-                            alt="Drapeau" 
-                            className="drapeau"
-                        />
-                        <div className="image-text">
-                            <div className="text-box">
-                                <ul>
-                                    <p>Le drapeau officiel du Royaume Giratoire de France est une représentation forte et symbolique de l'identité nationale, de la souveraineté territoriale et des valeurs fondatrices de l'État.</p>
-                                    <br/>
-                                    <li><p><b>Le symbole central : le rond-point</b></p></li>
-                                    <p>Au centre du drapeau se trouve un rond-point parfaitement circulaire, bordé de routes à quatre branches. Ce motif incarne la structure fondamentale du territoire national, chaque giratoire étant une parcelle sacrée du royaume.
-                                    Le rond-point représente la stabilité dans le mouvement, le pouvoir centralisé et la circulation harmonieuse des idées, des citoyens et des véhicules sous l'autorité du Prince.</p>
-                                    <br/>
-                                    <li><p><b>Le cercle vert : le cœur fertile de la nation</b></p></li>
-                                    <p>Le centre vert symbolise la vie, la prospérité et la paix civile. Il rappelle les nombreux ronds-points fleuris, entretenus avec soin par les services royaux. C'est également une référence écologique : le giratoire, par sa nature, réduit les accidents et fluidifie la circulation, respectant ainsi l'ordre naturel du trafic.</p>
-                                    <br/>
-                                    <li><p><b>Les zones bleues : la souveraineté</b></p></li>
-                                    <p>Les quatre coins bleus représentent les quatre points cardinaux du Royaume Giratoire, chacun régi par un Préfet du Rond Central. Le bleu est la couleur de la majesté, de l'unité et de la surveillance permanente. Il évoque aussi la route elle-même, cadrée, encadrée et protégée.</p>
-                                    <br/>
-                                    <li><p><b>Les zones blanches : la paix et la conformité</b></p></li>
-                                    <p>Les champs blancs entre les zones bleues incarnent la neutralité de l'ordre établi, la conformité à la rotation, et la paix imposée par le régime circulaire.
-                                    Elles sont les zones tampons où toute perturbation — notamment jaune — est strictement interdite.</p>
-                                    <br/>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="image-item">
-                    <h3 className="image-title">Notre Devise : Circuation . Rotation . Union</h3>
+            <div className="image-item">
+                    <h3 className="image-title">La Devise : Circuation . Rotation . Union</h3>
                     <div className="image-content">
                     
                         <div className="image-text">
@@ -163,27 +134,55 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div> 
+            
+
+            <div className="images-container">
+                <div className="image-item">
+                    <h3 className="image-title" >Le Drapeau</h3>
+                    <div className="image-content">
+                        <img 
+                            src="/Drapeau.jpg" 
+                            alt="Drapeau" 
+                            className="drapeau"
+                        />
+                        <div className="image-text">
+                            <div className="text-box">
+                                <ul>
+                                    <p>Le drapeau officiel du Royaume Giratoire de France est une représentation forte et symbolique de l'identité nationale, de la souveraineté territoriale et des valeurs fondatrices de l'État.</p>
+                                    <br/>
+                                    <li><p><b>Le symbole central : le rond-point</b></p></li>
+                                    <p>Au centre du drapeau se trouve un rond-point parfaitement circulaire, bordé de routes à quatre branches. Ce motif incarne la structure fondamentale du territoire national, chaque giratoire étant une parcelle sacrée du royaume.
+                                    Le rond-point représente la stabilité dans le mouvement, le pouvoir centralisé et la circulation harmonieuse des idées, des citoyens et des véhicules sous l'autorité du Prince.</p>
+                                    <br/>
+                                    <li><p><b>Le cercle vert : le cœur fertile de la nation</b></p></li>
+                                    <p>Le centre vert symbolise la vie, la prospérité et la paix civile. Il rappelle les nombreux ronds-points fleuris, entretenus avec soin par les services royaux. C'est également une référence écologique : le giratoire, par sa nature, réduit les gaz à effet de serre (GES) de part sa verdure reluisante.</p>
+                                    <br/>
+                                    <li><p><b>Les zones bleues : la souveraineté</b></p></li>
+                                    <p>Les deux coins bleus représentent les deux points cardinaux du Royaume Giratoire, chacun régi par un Préfet du Rond Central. Le bleu est la couleur de la majesté, de l'unité et de la surveillance permanente. Il évoque aussi la route elle-même, cadrée, encadrée et protégée.</p>
+                                    <br/>
+                                    <li><p><b>Les zones blanches : la paix et la conformité</b></p></li>
+                                    <p>Les champs blancs entre les zones bleues incarnent la neutralité de l'ordre établi, la conformité à la rotation, et la paix imposée par le régime circulaire.
+                                    Elles sont les zones tampons où toute perturbation — notamment jaune — est strictement interdite.</p>
+                                    <br/>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <h3 className="image-title">Notre Hymne</h3>
+            <h3 className="image-title">L'Hymne</h3>
             <div className="hymne-container">
                 <button 
                     className="hymne-button" 
-                    onClick={() => window.open('https://youtu.be/TpBZ66r0mXM', '_blank')}
+                    onClick={() => window.open('https://youtu.be/-g5xOEKFhYg', '_blank')}
                 >
                     Écouter l'Hymne du Royaume
                 </button>
-            </div>
-
-            
+            </div>  
         </div>
-
             
             
-
-
             <div className="container economie">
                 <div className="image-item">
                     <h3 className="image-title">Notre Économie</h3>
@@ -238,8 +237,13 @@ function Home() {
                                     <br/>
 
                                     <p><i>⚠️ Les devises étrangères ne sont acceptées que dans les zones douanières giratoires, et doivent être immédiatement converties en Rond sous peine d'amende.</i></p>
-                                                          
-                                                               
+                                    <br/>
+
+                                    <li><p><b>Le Rond dans le langage courant</b></p></li>
+                                    <p>Fierté nationale, le Rond a même laissé son empreinte dans la langue populaire. L'expression bien connue :</p>                         
+                                    <p className="indented">"J'ai plus un rond"</p>
+                                    <p>L'expression trouve son origine dans le Royaume. Autrefois, lors des grandes périodes de crise centrifuge, perdre son dernier Rond signifiait être exclu du système circulatoire : plus de carburant, plus de péages, plus de place dans le flux national.</p>
+                                    <p>Ainsi, ne plus avoir un Rond, c'était être véritablement hors du circuit.</p>
                                 </ul>
                             </div>    
                         </div>
