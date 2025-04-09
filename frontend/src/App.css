@@ -74,6 +74,7 @@
 nav {
   display: flex;
   justify-content: center;
+  align-items: center; /* Ajouté pour aligner verticalement les éléments */
   gap: 20px;
   background-color: var(--primary-color);
   padding: 15px;
@@ -113,8 +114,7 @@ nav button {
   text-align: center;
   display: inline-block;
   white-space: nowrap;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  transition: background-color 0.3s ease, transform 0.2s ease;}
 
 nav button:hover {
   background-color: var(--primary-dark);
