@@ -1,35 +1,11 @@
 {
-  "name": "webapp",
-  "version": "1.0.0",
-  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
-  },
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/m-nsx/web.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/m-nsx/web/issues"
-  },
-  "homepage": "https://github.com/m-nsx/web#readme",
-  "description": "",
-  "dependencies": {
-    "axios": "^1.8.4",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^3.0.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "mongodb-memory-server": "^10.1.4",
-    "mongoose": "^8.13.0",
-    "nodemon": "^3.1.9",
-    "os": "^0.1.2"
+    "dev": "node backend/index.js",
+    "client": "npm start --prefix frontend",
+    "start": "concurrently \"npm run dev\" \"npm run client\""
   }
 }

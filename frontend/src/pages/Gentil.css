@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  background-size: cover; 
+  color: white;
+}
+
+.Pas_Gilet_Jaune {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.button-succes {
+    background-color: #4CAF50;
+    color: white;
+    padding: clamp(15px, 4vw, 25px) clamp(30px, 8vw, 50px); 
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    font-size: clamp(14px, 2vw, 28px);   
+    font-weight: bold;
+  }
+  .button-succes:hover {
+    background-color: #45a049; 
+  }
+  
+
+.macron_heureux {
+  position: relative;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.emoji_pouce {
+  position: absolute;
+  transform:  rotate(10deg);
+  top: 60%; 
+  right: -12%; 
+  width: clamp(5%, 15vw, 20%);  
+  max-width: 120px;
+  height: auto;
+  z-index: 100;
+}
+
+.macron_popelup {
+  opacity: 0.8;
+  position: absolute;
+  top: 59%; 
+  right: -150%; 
+  width: 150%;
+  max-width: 800px; 
+  height: auto;
+  z-index: 100;
+}
+
+.titre_bravo {
+  align-items: center;
+  width: clamp(5%, 90vw, 100%); 
+  max-width: 900px;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .macron_popelup {
+    display: none;
+  }
+  .emoji_pouce {
+    display: none;
+  }
+
+
+  
+  
+  
+}
