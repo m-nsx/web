@@ -48,14 +48,14 @@
   justify-content: center;
   align-items: center;
   min-height: 120vh; 
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .questionnaire {
   background: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 600px; 
 }

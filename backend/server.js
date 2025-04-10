@@ -1,39 +1,17 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import os from 'os';
-import cors from 'cors';
-
-import connectDB from './config/db.js';
-import categoryRoutes from './routes/category.route.js';
-import userRoutes from './routes/user.route.js';
-import voteRoutes from './routes/vote.route.js';
-
-// Load environment variables from the .env file
-dotenv.config();
-
-// Create an express application
+const express = require('express');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 3000;
+const { wss } = require('./websocket'); // Import WebSocket server
 
-// Update CORS configuration
-app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from the frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-}));
+// ...existing code...
 
-// Allow the server to accept JSON data in the body of the request for parsing
-app.use(express.json());
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
-app.use('/api', categoryRoutes, userRoutes, voteRoutes);
-
-app.listen(PORT, () => {
-    connectDB(); // Connect to the database
-    console.log('Server accessible on http://localhost:' + PORT + ' if you are on local machine');
-    const networkInterfaces = os.networkInterfaces();
-    const localIp = Object.values(networkInterfaces)
-        .flat()
-        .find((iface) => iface.family === 'IPv4' && !iface.internal).address;
-
-    console.log(`Server accessible on http://${localIp}:${PORT} for devices on the same local network`);
+// Attach WebSocket server to the HTTP server
+server.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
+  });
 });

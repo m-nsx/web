@@ -1,0 +1,70 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.card form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.card form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.card form button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  margin-top: 20px;
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  width: 100%;
+}
+
+.delete-button:hover {
+  background-color: #8b0000;
+}
+
+.message {
+  color: red;
+  text-align: center;
+  margin-top: 15px;
+}

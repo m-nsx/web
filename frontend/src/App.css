@@ -73,13 +73,12 @@
 
 nav {
   display: flex;
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Aligne les éléments verticalement */
-  gap: 20px;
+  justify-content: center; /* Centre horizontalement les éléments */
+  align-items: center; /* Centre verticalement les éléments */
+  gap: 20px; /* Espacement entre les éléments */
   background-color: var(--primary-color);
   padding: 15px;
   border-bottom: 3px solid var(--primary-dark);
-  flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
 
 nav a {
@@ -99,31 +98,44 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-nav a[href="/leader"] {
-  font-weight: bold;
-}
-
 nav button {
   background: none;
-  border: 2px solid white;
+  border: none;
   color: white;
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
   padding: 10px 20px;
-  border-radius: 50px; /* Fully rounded buttons */
+  border-radius: 50px;
   text-align: center;
+  display: inline-block;
+  white-space: nowrap;
   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.1);
 }
 
 nav button:hover {
   background-color: var(--primary-dark);
   transform: scale(1.1);
-  color: white; /* Keep text color white on hover */
-}
-
-nav button:last-child {
-  margin-left: 20px; /* Ajoute un espace entre le bouton Déconnexion et les autres éléments */
 }
 
 .page {
@@ -239,32 +251,6 @@ input:focus, select:focus {
   font-family: var(--font-family);
 }
 
-/* Supprimez les styles liés aux voitures */
-.car-container {
-  /* position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1; */
-}
-
-.car {
-  /* position: absolute;
-  right: -100px;
-  width: 100px;
-  height: auto;
-  animation: moveCar linear infinite;
-  cursor: pointer;
-  transition: transform 0.2s ease; */
-}
-
-.car:active {
-  /* transform: scale(1.2); */
-}
-
 @keyframes moveCar {
   /* from {
     transform: translateX(0);
@@ -363,4 +349,68 @@ input:focus, select:focus {
   to {
     opacity: 1;
   }
+}
+
+.vote-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vote-button:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+.delete-button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #8b0000;
+  transform: scale(1.1);
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+  transform: scale(1.1);
 }

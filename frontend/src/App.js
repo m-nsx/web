@@ -1,6 +1,3 @@
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-
 import './App.css';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
@@ -9,82 +6,80 @@ import Vote from './pages/Vote';
 import VotesManagement from './pages/VotesManagement';
 import Account from './pages/Account';
 import Leader from './pages/Leader';
-import Questionnaire from './pages/Questionnaire'; // Import du questionnaire
-import Gentil from './pages/Gentil'; // Import de la page Gentil
-import Mechant from './pages/Mechant'; // Import de la page Mechant
+import Questionnaire from './pages/Questionnaire';
+import Gentil from './pages/Gentil';
+import Mechant from './pages/Mechant';
+
+import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
-  // Utilisez la présence du cookie pour déterminer si l'utilisateur est "méchant"
-  const isBlocked = document.cookie.includes('giletJaune=true');
+  const [isBlocked] = useState(document.cookie.includes('giletJaune=true'));
   const navigate = useNavigate();
 
   const handleLogin = (newToken) => {
     setToken(newToken);
+    navigate('/');
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
+    navigate('/');
   };
 
-  // Si l'utilisateur est "méchant", toujours afficher la page Mechant
-  if (isBlocked) {
-    return <Mechant />;
-  }
+  const handleAuthClick = () => {
+    if (document.cookie.includes('alreadyAnswered=true')) {
+      navigate('/auth');
+    } else {
+      navigate('/questionnaire');
+    }
+  };
 
   return (
     <div className="App">
-      <div className="banner">
-        <span>Bienvenue au Rondistan</span>
-      </div>
-      <nav>
-        <Link to="/">Accueil</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/leader">Notre Leader</Link>
-        {/* Removed game link */}
-        {!token && (
-          <Link to="/questionnaire" style={{ color: 'blue', textDecoration: 'underline' }}>
-            Authentification
-          </Link>
-        )}
-        {token && (
-          <>
-            <Link to="/vote">Vote</Link>
-            <Link to="/votes-management">Gestion des Votes</Link>
-            <Link to="/account">Mon Compte</Link>
-            <button
-              onClick={handleLogout}
-              style={{
-                backgroundColor: 'var(--primary-color)',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                padding: '10px 20px',
-                borderRadius: '50px',
-                fontSize: '1.2em',
-                fontWeight: 'bold',
-                marginLeft: '20px'
-              }}
-            >
-              Déconnexion
-            </button>
-          </>
-        )}
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
-        <Route path="/questionnaire" element={<Questionnaire />} /> {/* Route pour le questionnaire */}
-        <Route path="/gentil" element={<Gentil />} /> {/* Route pour la page Gentil */}
-        <Route path="/mechant" element={<Mechant />} /> {/* Route pour la page Mechant */}
-        {token && <Route path="/vote" element={<Vote />} />}
-        {token && <Route path="/votes-management" element={<VotesManagement />} />}
-        {token && <Route path="/account" element={<Account />} />}
-        <Route path="/leader" element={<Leader />} />
-        {/* Removed game route */}
-      </Routes>
+      {isBlocked && (
+        <div className="block-screen">
+          <h1>Accès refusé 🚫</h1>
+          <p>
+            Vous êtes certifié Gilet Jaune. <br />
+            La République Imaginaire ne peut pas tolérer cela ! 😤
+          </p>
+          <img src="/images/no-access.png" alt="No Access" />
+        </div>
+      )}
+      {!isBlocked && (
+        <>
+          <div className="banner">
+            <span>Bienvenue au Royaume Giratoire de France</span>
+          </div>
+          <nav>
+            <button onClick={() => navigate('/')} className="nav-button">Accueil</button> | 
+            <button onClick={() => navigate('/contact')} className="nav-button">Contact</button> | 
+            <button onClick={() => navigate('/leader')} className="nav-button">Notre Leader</button>
+            {!token && <> | <button onClick={handleAuthClick} className="nav-button">Authentification</button></>}
+            {token && <>
+              | <button onClick={() => navigate('/vote')} className="nav-button">Vote</button> | 
+              <button onClick={() => navigate('/votes-management')} className="nav-button">Gestion des Votes</button> | 
+              <button onClick={() => navigate('/account')} className="nav-button">Mon Compte</button> | 
+              <button onClick={handleLogout} className="nav-button">Déconnexion</button>
+            </>}
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/gentil" element={<Gentil />} />
+            <Route path="/mechant" element={<Mechant />} />
+            {token && <Route path="/vote" element={<Vote />} />}
+            {token && <Route path="/votes-management" element={<VotesManagement />} />}
+            {token && <Route path="/account" element={<Account />} />}
+            <Route path="/leader" element={<Leader />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }
