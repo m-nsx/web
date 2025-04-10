@@ -6,7 +6,7 @@ function Leader() {
     <div className="leader-page">
       <div className="header-banner">
         <div className="stars-left">★★★</div>
-        <h1>Notre Grand Leader</h1>
+        <h1>Notre idole</h1>
         <div className="stars-right">★★★</div>
       </div>
       
@@ -17,7 +17,7 @@ function Leader() {
             alt="Place de l'Étoile - Rond-point des Champs-Élysées" 
             className="leader-portrait"
           />
-          <p className="image-caption">Le Glorieux Rond-Point des Champs-Élysées - L'essence même de notre Leader</p>
+          <p className="image-caption">Le Glorieux Rond-Point des Champs-Élysées - L'essence même de notre nation</p>
         </div>
         <div className="medal-decoration left"></div>
         <div className="medal-decoration right"></div>
@@ -26,7 +26,7 @@ function Leader() {
       <div className="quote-container">
         <blockquote>
           "La circulation des idées doit être aussi fluide que le trafic sur un rond-point bien conçu."
-          <cite>- Notre Grand Leader Rond-Point</cite>
+          <cite>- Notre idole le Rond-Point</cite>
         </blockquote>
       </div>
       
@@ -38,7 +38,7 @@ function Leader() {
         </p>
         
         <div className="facts-section">
-          <h2>Faits glorieux sur notre Leader Rond-Point</h2>
+          <h2>Faits glorieux sur notre idole</h2>
           <ul className="achievements-list">
             <li>Peut accueillir jusqu'à 12 avenues et boulevards à la fois</li>
             <li>A survécu à des millions de touristes désorientés sans perdre sa circularité</li>
@@ -51,7 +51,7 @@ function Leader() {
         <div className="recommendation">
           <p>
             Nous vous conseillons grandement de positioner dans votre salon, ainsi que dans toutes les pièces de votre logement, 
-            des maquettes de notre grand Leader Rond-Point, pour pouvoir l'honorer dans tous les instants du quotidien !
+            des maquettes de notre idole Rond-Point, pour pouvoir l'honorer dans tous les instants du quotidien !
           </p>
           <p className="bonus-text">
             Pour votre confort, notre ministère de la Circulation vous propose désormais des mini rond-points

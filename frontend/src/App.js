@@ -44,7 +44,7 @@ function App() {
           <h1>Accès refusé 🚫</h1>
           <p>
             Vous êtes certifié Gilet Jaune. <br />
-            La République Imaginaire ne peut pas tolérer cela ! 😤
+            Le Royaume Giratoire de France ne peut pas tolérer cela ! 😤
           </p>
           <img src="/images/no-access.png" alt="No Access" />
         </div>
@@ -57,7 +57,7 @@ function App() {
           <nav>
             <button onClick={() => navigate('/')} className="nav-button">Accueil</button> | 
             <button onClick={() => navigate('/contact')} className="nav-button">Contact</button> | 
-            <button onClick={() => navigate('/leader')} className="nav-button">Notre Leader</button>
+            <button onClick={() => navigate('/leader')} className="nav-button">Notre idole</button>
             {!token && <> | <button onClick={handleAuthClick} className="nav-button">Authentification</button></>}
             {token && <>
               | <button onClick={() => navigate('/vote')} className="nav-button">Vote</button> | 
