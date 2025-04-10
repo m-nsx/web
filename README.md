@@ -36,7 +36,7 @@ npm run start
 
 1. Install [MongoDB](https://www.mongodb.com/try/download/community) and [mongosh](https://www.mongodb.com/docs/mongodb-shell/)
 
-2. Run the following command
+2. Run the following command in a separate terminal
 
 ```
 mongosh
