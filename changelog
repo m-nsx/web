@@ -1,0 +1,10 @@
+- Changed redirection from Gentil page to Auth page but in its register status (not login)
+- Changed form behavior (if you already responded to the form, then when you click auth button on navbar you're directly redirected to Auth page)
+- Aligned vertically buttons
+- Fixed some minor css and design issues
+- Added auto redirect user when login or logout (to show that something happened...)
+- Added confirmation popup to account deletion
+- Added popup (info and confirmation) support with Modal elements
+- Added auto redirect user when deleting account
+- Fixed small typing error "Bienvenue au le Royaume Giratoire de France"
+- Added fancy visual effect for numbers (just open home page and enjoy !)

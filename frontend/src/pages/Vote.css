@@ -1,0 +1,181 @@
+.vote-page {
+  background: linear-gradient(135deg, #ffffff, #f0f0f5);
+  padding: 40px;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.vote-page h1 {
+  font-size: 2.5em;
+  color: #b22222;
+  margin-bottom: 20px;
+}
+
+.vote-page p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.vote-page button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vote-page button:hover {
+  background-color: #8b0000;
+  transform: scale(1.05);
+}
+
+.vote-form {
+  margin-bottom: 30px;
+}
+
+.vote-form select {
+  padding: 10px;
+  border: 2px solid #b22222;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.vote-select {
+  padding: 12px;
+  font-size: 1em;
+  border: 2px solid #b22222;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  margin: 10px 0;
+}
+
+.vote-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.vote-card {
+  background-color: white;
+  border: 2px solid #b22222;
+  border-radius: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vote-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.vote-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.vote-card h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.vote-card button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.vote-card button:hover {
+  background-color: #8b0000;
+  transform: scale(1.1);
+}
+
+.selected-candidate {
+  margin-top: 20px;
+}
+
+.selected-candidate p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.vote-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #b22222;
+}
+
+/* New mini-jeu container style */
+.mini-game-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  background: url('/images/rond-point.jpg') center/cover no-repeat;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Optional: add hover effect for targets within mini-game */
+.mini-game-container div {
+  transition: transform 0.2s ease;
+}
+
+.mini-game-container div:hover {
+  transform: scale(1.05);
+}
+
+.vote-form-card {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.vote-form-card label {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.vote-button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.vote-button:hover {
+  background-color: #8b0000;
+  transform: scale(1.05);
+}
