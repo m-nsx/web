@@ -150,6 +150,7 @@ function Contact() {
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
             transition: background-color 0.3s, transform 0.2s;
             z-index: 10;
           }

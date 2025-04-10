@@ -32,6 +32,16 @@ npm run start
 
 1. Cookies are unhealthy, get rid of them ! Your browser may be at risk of hyperglycemia...
 
+### Database isn't working, I can't vote. What a totalitarian nation !
+
+1. Install [MongoDB](https://www.mongodb.com/try/download/community) and [mongosh](https://www.mongodb.com/docs/mongodb-shell/)
+
+2. Run the following command
+
+```
+mongosh
+```
+
 ### Aww the port is already in use, what should I do ?
 
 1. Find the process
