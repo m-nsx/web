@@ -9,7 +9,7 @@ git clone https://github.com/m-nsx/web.git
 2. Install packages (run in root folder)
 
 ```
-npm run install
+npm run setup
 ```
 
 3. If auto install doesn't work, manually install packages in each folder (run in both root folder, backend folder and frontend folder)
